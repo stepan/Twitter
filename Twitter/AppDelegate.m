@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TwitterClient.h"
+#import "TweetsViewController.h"
 
 @implementation NSURL (dictionaryFromQueryString)
 
@@ -38,6 +39,9 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [[LoginViewController alloc] init];
+    TweetsViewController *tvc = [[TweetsViewController alloc] init];
+    UINavigationController *uvc = [[UINavigationController alloc] initWithRootViewController:tvc];
+    self.window.rootViewController = uvc;
     [self.window makeKeyAndVisible];
     return YES;
 }

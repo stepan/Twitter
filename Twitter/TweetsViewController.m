@@ -7,8 +7,10 @@
 //
 
 #import "TweetsViewController.h"
+#import "TweetViewCell.h"
 
 @interface TweetsViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end
 
@@ -26,13 +28,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.tableview.dataSource = self;
+    self.tableview.delegate = self;
+    [self.tableview registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+# pragma mark - tableview methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [tableView dequeueReusableCellWithIdentifier:@"TweetViewCell"];
 }
 
 @end

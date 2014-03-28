@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface User : NSObject
-
++ (User *)currentUser;
++ (void)setCurrentUser:(User *)user;
 @end
