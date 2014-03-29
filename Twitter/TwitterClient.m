@@ -10,14 +10,15 @@
 
 @implementation TwitterClient
 
-+ (TwitterClient *)client{
++ (TwitterClient *)clientWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret{
     static TwitterClient *client = nil;
     static dispatch_once_t pred;
     dispatch_once(&pred, ^{
-        client = [[TwitterClient alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.twitter.com"] consumerKey:@"6rBpLQQ1bTJAsSEGSdWk9wcm4" consumerSecret:@"2V4vOZY8Lv4jyJkZ7Z8br9EoKYtyne3cEl5ZPHjRVOyev6GGVp"];
+        client = [[TwitterClient alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.twitter.com"] consumerKey:consumerKey consumerSecret:consumerSecret];
     });
     return client;
 }
+
 - (void)login{
     [self.requestSerializer removeAccessToken];
     [self fetchRequestTokenWithPath:@"oauth/request_token" method:@"POST" callbackURL:[NSURL URLWithString: @"sgtwitter://oauth"] scope:nil success:^(BDBOAuthToken *requestToken) {
@@ -28,6 +29,7 @@
         NSLog(@"failure");
     }];
 }
+
 - (void)logout{
     [self deauthorize];
 }

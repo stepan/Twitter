@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface Tweet : NSObject
+
+@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSDate *createdAt;
+@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSDictionary *dictionary;
+
++ (NSMutableArray *)tweetsWithObject:(id)object;
+- (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

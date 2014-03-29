@@ -10,38 +10,22 @@
 #import "LoginViewController.h"
 #import "TwitterClient.h"
 #import "TweetsViewController.h"
-
-@implementation NSURL (dictionaryFromQueryString)
-
-- (NSDictionary *)dictionaryFromQueryString
-{
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    
-    NSArray *pairs = [[self query] componentsSeparatedByString:@"&"];
-    
-    for(NSString *pair in pairs) {
-        NSArray *elements = [pair componentsSeparatedByString:@"="];
-        
-        NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *val = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        [dictionary setObject:val forKey:key];
-    }
-    
-    return dictionary;
-}
-
-@end
+#import "NSURL+dictionaryFromQueryString.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.twitterClient = [TwitterClient clientWithConsumerKey:@"6rBpLQQ1bTJAsSEGSdWk9wcm4" consumerSecret:@"2V4vOZY8Lv4jyJkZ7Z8br9EoKYtyne3cEl5ZPHjRVOyev6GGVp"];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[LoginViewController alloc] init];
+    LoginViewController *lvc = [[LoginViewController alloc] init];
     TweetsViewController *tvc = [[TweetsViewController alloc] init];
     UINavigationController *uvc = [[UINavigationController alloc] initWithRootViewController:tvc];
-    self.window.rootViewController = uvc;
+    if (self.twitterClient.authorized) {
+        self.window.rootViewController = uvc;
+    } else{
+        self.window.rootViewController = lvc;
+    }
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -84,12 +68,11 @@
         {
             NSDictionary *parameters = [url dictionaryFromQueryString];
             if (parameters[@"oauth_token"] && parameters[@"oauth_verifier"]){
-                TwitterClient *client = [TwitterClient client];
-                [client fetchAccessTokenWithPath:@"/oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
+                [self.twitterClient fetchAccessTokenWithPath:@"/oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
                     NSLog(@"success");
-                    [client.requestSerializer saveAccessToken:accessToken];
+                    [self.twitterClient.requestSerializer saveAccessToken:accessToken];
                     
-                    [client homeTimeLineWithSuuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [self.twitterClient homeTimeLineWithSuuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                         NSLog(@"response %@", responseObject);
                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                         NSLog(@"response %@", error);

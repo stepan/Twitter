@@ -24,4 +24,15 @@ NSString *const userKey = @"userKey";
 //    NSDictionary *dictionary = [defaults objectForKey:userKey];
     
 }
+
+- (id)initWithDictionary:(NSDictionary *)dictionary{
+    self = [super init];
+    if (self) {
+        self.dictionary = dictionary;
+        self.name = dictionary[@"name"];
+        self.screenName = dictionary[@"screen_name"];
+        self.profileImageURL = [[NSURL alloc] initWithString:dictionary[@"profile_image_url"]];
+    }
+    return self;
+}
 @end

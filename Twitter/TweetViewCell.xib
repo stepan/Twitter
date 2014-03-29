@@ -81,6 +81,13 @@
                     <constraint firstItem="f4w-0T-B3E" firstAttribute="top" secondItem="BKT-3P-Vjv" secondAttribute="bottom" constant="3" id="nzs-zl-Y5g"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="nameLabel" destination="TZM-f5-11e" id="cec-aF-d0u"/>
+                <outlet property="profileImage" destination="IVw-nV-MbU" id="vfv-yC-EUe"/>
+                <outlet property="screenNameLabel" destination="ZfE-Jg-lWp" id="3kv-57-rb9"/>
+                <outlet property="tweetTextLabel" destination="f4w-0T-B3E" id="6oQ-ec-bDJ"/>
+                <outlet property="whenLabel" destination="Ibl-Or-czU" id="JxD-lu-he1"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

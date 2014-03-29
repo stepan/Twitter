@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface User : NSObject
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *screenName;
+@property (nonatomic, strong) NSURL *profileImageURL;
+@property (nonatomic, strong) NSDictionary *dictionary;
+
+- (id)initWithDictionary:(NSDictionary *)dictionary;
 + (User *)currentUser;
 + (void)setCurrentUser:(User *)user;
+
 @end

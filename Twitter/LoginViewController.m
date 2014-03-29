@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "TwitterClient.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController ()
 - (IBAction)onLoginButtonClick:(id)sender;
@@ -38,7 +39,7 @@
 }
 
 - (IBAction)onLoginButtonClick:(id)sender {
-    NSLog(@"clicked");
-    [[TwitterClient client] login];
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate.twitterClient login];
 }
 @end

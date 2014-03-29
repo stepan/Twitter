@@ -29,6 +29,7 @@
 		FDED6B7418E54BD7009B1DCB /* TweetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDED6B7218E54BD7009B1DCB /* TweetViewCell.xib */; };
 		FDED6B7818E54BFD009B1DCB /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = FDED6B7718E54BFD009B1DCB /* Tweet.m */; };
 		FDED6B7B18E54C11009B1DCB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FDED6B7A18E54C11009B1DCB /* User.m */; };
+		FDED6B7F18E5DBA4009B1DCB /* NSURL+dictionaryFromQueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = FDED6B7E18E5DBA4009B1DCB /* NSURL+dictionaryFromQueryString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		FDED6B7718E54BFD009B1DCB /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		FDED6B7918E54C11009B1DCB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		FDED6B7A18E54C11009B1DCB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		FDED6B7D18E5DB4F009B1DCB /* NSURL+dictionaryFromQueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+dictionaryFromQueryString.h"; sourceTree = "<group>"; };
+		FDED6B7E18E5DBA4009B1DCB /* NSURL+dictionaryFromQueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+dictionaryFromQueryString.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,7 @@
 		FDED6B2018E4E4A4009B1DCB = {
 			isa = PBXGroup;
 			children = (
+				FDED6B7C18E5DB28009B1DCB /* Lib */,
 				FDED6B3218E4E4A4009B1DCB /* Twitter */,
 				FDED6B2B18E4E4A4009B1DCB /* Frameworks */,
 				FDED6B2A18E4E4A4009B1DCB /* Products */,
@@ -203,6 +207,15 @@
 				FDED6B7A18E54C11009B1DCB /* User.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		FDED6B7C18E5DB28009B1DCB /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				FDED6B7D18E5DB4F009B1DCB /* NSURL+dictionaryFromQueryString.h */,
+				FDED6B7E18E5DBA4009B1DCB /* NSURL+dictionaryFromQueryString.m */,
+			);
+			name = Lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,6 +353,7 @@
 			files = (
 				FDED6B6D18E54BA4009B1DCB /* TweetViewController.m in Sources */,
 				FDED6B6218E4E7A6009B1DCB /* LoginViewController.m in Sources */,
+				FDED6B7F18E5DBA4009B1DCB /* NSURL+dictionaryFromQueryString.m in Sources */,
 				FDED6B7B18E54C11009B1DCB /* User.m in Sources */,
 				FDED6B6818E54B92009B1DCB /* TweetsViewController.m in Sources */,
 				FDED6B7818E54BFD009B1DCB /* Tweet.m in Sources */,

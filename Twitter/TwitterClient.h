@@ -9,7 +9,7 @@
 #import "BDBOAuth1RequestOperationManager.h"
 
 @interface TwitterClient : BDBOAuth1RequestOperationManager
-+ (TwitterClient *)client;
++ (TwitterClient *)clientWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret;
 - (void)login;
 - (void)logout;
 - (AFHTTPRequestOperation *)homeTimeLineWithSuuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
