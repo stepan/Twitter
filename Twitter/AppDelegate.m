@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "TweetsViewController.h"
 #import "NSURL+dictionaryFromQueryString.h"
+#import "User.h"
 
 @implementation AppDelegate
 
@@ -70,6 +71,11 @@
                 [[AppManager twitterClient] fetchAccessTokenWithPath:@"/oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
                     NSLog(@"success");
                     [[AppManager twitterClient].requestSerializer saveAccessToken:accessToken];
+                    [[AppManager twitterClient] userWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        [User setCurrentUser:[[User alloc] initWithDictionary:responseObject]];
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        NSLog(@"Could not get user");
+                    }];
                 } failure:^(NSError *error) {
                     NSLog(@"error %@", [error description]);
                 }];

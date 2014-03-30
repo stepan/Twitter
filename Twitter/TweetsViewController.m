@@ -8,13 +8,16 @@
 
 #import "AppManager.h"
 #import "TweetsViewController.h"
+#import "TweetViewController.h"
 #import "TweetViewCell.h"
 #import "Tweet.h"
+#import "User.h"
 
 @interface TweetsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) NSMutableArray *tweets;
 @property (nonatomic, strong) TweetViewCell *prototypeCell;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation TweetsViewController
@@ -35,18 +38,25 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(onLogout)];
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
+    [self.tableview addSubview:self.refreshControl];
     self.tableview.separatorInset = UIEdgeInsetsZero;
     [self.tableview registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
     [self fetchTweets];
+    [User currentUser];
 }
 
 - (void)fetchTweets{
     [[AppManager twitterClient] homeTimeLineWithSuuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         self.tweets = [Tweet tweetsWithObject:responseObject];
         [self.tableview reloadData];
+        [self.refreshControl endRefreshing];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Failed to fetch tweets %@", error);
         [self.tableview reloadData];
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -74,6 +84,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [TweetViewCell heightForTweet:self.tweets[indexPath.row]];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    TweetViewController *tweetViewController = [[TweetViewController alloc] initWithTweet:self.tweets[indexPath.row]];
+    [self.navigationController pushViewController:tweetViewController animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

@@ -23,9 +23,18 @@
     return self;
 }
 
+- (id)initWithTweet:(Tweet *)tweet{
+    self = [super init];
+    if (self) {
+        self.tweet = tweet;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Tweet";
     // Do any additional setup after loading the view from its nib.
 }
 

@@ -11,7 +11,7 @@
 @interface User : NSObject
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *screenName;
-@property (nonatomic, strong) NSURL *profileImageURL;
+@property (nonatomic, strong) NSString *profileImageURL;
 @property (nonatomic, strong) NSDictionary *dictionary;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

@@ -48,7 +48,7 @@ static TweetViewCell *prototypeCell = nil;
     
     self.nameLabel.attributedText = name;
     self.tweetTextLabel.text = self.tweet.text;
-    [self.profileImage setImageWithURL:self.tweet.user.profileImageURL];
+    [self.profileImage setImageWithURL:[[NSURL alloc] initWithString:self.tweet.user.profileImageURL]];
     self.whenLabel.text = [MHPrettyDate prettyDateFromDate:self.tweet.createdAt withFormat:MHPrettyDateShortRelativeTime];
 }
 
