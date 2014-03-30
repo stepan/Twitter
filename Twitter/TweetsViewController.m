@@ -6,16 +6,14 @@
 //  Copyright (c) 2014 Stepan Grigoryan. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "AppManager.h"
 #import "TweetsViewController.h"
 #import "TweetViewCell.h"
-#import "TwitterClient.h"
 #import "Tweet.h"
 
 @interface TweetsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) NSMutableArray *tweets;
-@property (nonatomic, strong) TwitterClient *twitterClient;
 @property (nonatomic, strong) TweetViewCell *prototypeCell;
 @end
 
@@ -33,8 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    AppDelegate *appDelegate = (AppDelegate *)([UIApplication sharedApplication].delegate);
-    self.twitterClient = appDelegate.twitterClient;
+    self.title = @"Tweets";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(onLogout)];
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
     [self.tableview registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
@@ -42,7 +40,7 @@
 }
 
 - (void)fetchTweets{
-    [self.twitterClient homeTimeLineWithSuuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[AppManager twitterClient] homeTimeLineWithSuuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         self.tweets = [Tweet tweetsWithObject:responseObject];
         [self.tableview reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -55,6 +53,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)onLogout{
+    [[AppManager twitterClient] logout];
 }
 
 # pragma mark - tableview methods

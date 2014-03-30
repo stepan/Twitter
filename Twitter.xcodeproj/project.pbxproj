@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B0645330EA044C90A9D585FB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E739566F224A4241A63FE517 /* libPods.a */; };
+		FD5750AC18E7B9E50039237B /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5750AB18E7B9E50039237B /* AppManager.m */; };
 		FDED6B2D18E4E4A4009B1DCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDED6B2C18E4E4A4009B1DCB /* Foundation.framework */; };
 		FDED6B2F18E4E4A4009B1DCB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDED6B2E18E4E4A4009B1DCB /* CoreGraphics.framework */; };
 		FDED6B3118E4E4A4009B1DCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDED6B3018E4E4A4009B1DCB /* UIKit.framework */; };
@@ -45,6 +46,8 @@
 /* Begin PBXFileReference section */
 		92C83DBB914F48E994846B52 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		E739566F224A4241A63FE517 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD5750AA18E7B9E50039237B /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
+		FD5750AB18E7B9E50039237B /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
 		FDED6B2918E4E4A4009B1DCB /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDED6B2C18E4E4A4009B1DCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FDED6B2E18E4E4A4009B1DCB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -148,6 +151,8 @@
 				FDED6B7518E54BE9009B1DCB /* Models */,
 				FDED6B3318E4E4A4009B1DCB /* Supporting Files */,
 				FDED6B6F18E54BAF009B1DCB /* Views */,
+				FD5750AA18E7B9E50039237B /* AppManager.h */,
+				FD5750AB18E7B9E50039237B /* AppManager.m */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				FDED6B7818E54BFD009B1DCB /* Tweet.m in Sources */,
 				FDED6B3D18E4E4A4009B1DCB /* AppDelegate.m in Sources */,
 				FDED6B5E18E4E73C009B1DCB /* TwitterClient.m in Sources */,
+				FD5750AC18E7B9E50039237B /* AppManager.m in Sources */,
 				FDED6B7318E54BD7009B1DCB /* TweetViewCell.m in Sources */,
 				FDED6B3918E4E4A4009B1DCB /* main.m in Sources */,
 			);

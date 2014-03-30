@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TwitterClient.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, strong) TwitterClient *twitterClient;
+
 @end

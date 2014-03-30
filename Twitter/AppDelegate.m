@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "AppManager.h"
 #import "LoginViewController.h"
-#import "TwitterClient.h"
 #import "TweetsViewController.h"
 #import "NSURL+dictionaryFromQueryString.h"
 
@@ -16,12 +16,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.twitterClient = [TwitterClient clientWithConsumerKey:@"6rBpLQQ1bTJAsSEGSdWk9wcm4" consumerSecret:@"2V4vOZY8Lv4jyJkZ7Z8br9EoKYtyne3cEl5ZPHjRVOyev6GGVp"];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     LoginViewController *lvc = [[LoginViewController alloc] init];
     TweetsViewController *tvc = [[TweetsViewController alloc] init];
     UINavigationController *uvc = [[UINavigationController alloc] initWithRootViewController:tvc];
-    if (self.twitterClient.authorized) {
+    if ([AppManager twitterClient].authorized) {
         self.window.rootViewController = uvc;
     } else{
         self.window.rootViewController = lvc;
@@ -68,9 +67,9 @@
         {
             NSDictionary *parameters = [url dictionaryFromQueryString];
             if (parameters[@"oauth_token"] && parameters[@"oauth_verifier"]){
-                [self.twitterClient fetchAccessTokenWithPath:@"/oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
+                [[AppManager twitterClient] fetchAccessTokenWithPath:@"/oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
                     NSLog(@"success");
-                    [self.twitterClient.requestSerializer saveAccessToken:accessToken];
+                    [[AppManager twitterClient].requestSerializer saveAccessToken:accessToken];
                 } failure:^(NSError *error) {
                     NSLog(@"error %@", [error description]);
                 }];
