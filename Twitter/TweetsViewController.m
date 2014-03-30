@@ -44,8 +44,6 @@
 - (void)fetchTweets{
     [self.twitterClient homeTimeLineWithSuuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         self.tweets = [Tweet tweetsWithObject:responseObject];
-        NSLog(@"%@", responseObject);
-        NSLog(@"%@", self.tweets);
         [self.tableview reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Failed to fetch tweets");
@@ -72,6 +70,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //TweetViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    return [TweetViewCell heightForTweet:self.tweets[indexPath.row]];
     return 200;
 }
 

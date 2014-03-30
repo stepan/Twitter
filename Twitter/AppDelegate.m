@@ -71,13 +71,6 @@
                 [self.twitterClient fetchAccessTokenWithPath:@"/oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
                     NSLog(@"success");
                     [self.twitterClient.requestSerializer saveAccessToken:accessToken];
-                    
-                    [self.twitterClient homeTimeLineWithSuuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                        NSLog(@"response %@", responseObject);
-                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                        NSLog(@"response %@", error);
-                    }];
-                    
                 } failure:^(NSError *error) {
                     NSLog(@"error %@", [error description]);
                 }];

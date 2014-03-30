@@ -108,7 +108,6 @@
 		FDED6B2018E4E4A4009B1DCB = {
 			isa = PBXGroup;
 			children = (
-				FDED6B7C18E5DB28009B1DCB /* Lib */,
 				FDED6B3218E4E4A4009B1DCB /* Twitter */,
 				FDED6B2B18E4E4A4009B1DCB /* Frameworks */,
 				FDED6B2A18E4E4A4009B1DCB /* Products */,
@@ -140,14 +139,15 @@
 		FDED6B3218E4E4A4009B1DCB /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
-				FDED6B7518E54BE9009B1DCB /* Models */,
-				FDED6B5B18E4E722009B1DCB /* API */,
-				FDED6B6418E4E803009B1DCB /* Controllers */,
-				FDED6B6F18E54BAF009B1DCB /* Views */,
 				FDED6B3B18E4E4A4009B1DCB /* AppDelegate.h */,
 				FDED6B3C18E4E4A4009B1DCB /* AppDelegate.m */,
 				FDED6B3E18E4E4A4009B1DCB /* Images.xcassets */,
+				FDED6B5B18E4E722009B1DCB /* API */,
+				FDED6B6418E4E803009B1DCB /* Controllers */,
+				FDED6B7C18E5DB28009B1DCB /* Lib */,
+				FDED6B7518E54BE9009B1DCB /* Models */,
 				FDED6B3318E4E4A4009B1DCB /* Supporting Files */,
+				FDED6B6F18E54BAF009B1DCB /* Views */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
@@ -216,6 +216,7 @@
 				FDED6B7E18E5DBA4009B1DCB /* NSURL+dictionaryFromQueryString.m */,
 			);
 			name = Lib;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

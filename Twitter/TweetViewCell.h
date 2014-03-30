@@ -11,4 +11,5 @@
 
 @interface TweetViewCell : UITableViewCell
 @property (nonatomic, strong) Tweet *tweet;
++ (CGFloat)heightForTweet:(Tweet *)tweet;
 @end

@@ -8,11 +8,11 @@
 
 #import "TweetViewCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "MHPrettyDate.h"
 
 @interface TweetViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *whenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tweetTextLabel;
 
@@ -39,11 +39,17 @@ static TweetViewCell *prototypeCell = nil;
 }
 
 - (void)styleCell{
-    self.nameLabel.text = self.tweet.user.name;
-    self.screenNameLabel.text = self.tweet.user.screenName;
+    NSMutableAttributedString *name = [[NSMutableAttributedString alloc] initWithString:self.tweet.user.name];
+    [name addAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:[UIFont systemFontSize]]} range:NSMakeRange(0, [name length])];
+    NSMutableAttributedString *screenName = [[NSMutableAttributedString alloc] initWithString:self.tweet.user.screenName];
+    [screenName addAttributes:@{NSForegroundColorAttributeName: [UIColor grayColor]} range:NSMakeRange(0, [screenName length])];
+    [name appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@" "]];
+    [name appendAttributedString:screenName];
+    
+    self.nameLabel.attributedText = name;
     self.tweetTextLabel.text = self.tweet.text;
     [self.profileImage setImageWithURL:self.tweet.user.profileImageURL];
-    NSLog(@"%@", [[self class] prototypeCell]);
+    self.whenLabel.text = [MHPrettyDate prettyDateFromDate:self.tweet.createdAt withFormat:MHPrettyDateShortRelativeTime];
 }
 
 + (TweetViewCell *)prototypeCell
@@ -53,6 +59,13 @@ static TweetViewCell *prototypeCell = nil;
         prototypeCell = [nib instantiateWithOwner:self options:nil][0];
     }
     return prototypeCell;
+}
+
++ (CGFloat)heightForTweet:(Tweet *)tweet{
+    TweetViewCell *pvc = [TweetViewCell prototypeCell];
+    NSDictionary *attributes = @{NSFontAttributeName: pvc.tweetTextLabel.font};
+    CGRect r = [tweet.text boundingRectWithSize:CGSizeMake(pvc.tweetTextLabel.frame.size.width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+    return ceil(pvc.frame.size.height - pvc.tweetTextLabel.frame.size.height + r.size.height);
 }
 
 @end

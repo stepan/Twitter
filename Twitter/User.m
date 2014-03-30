@@ -30,8 +30,8 @@ NSString *const userKey = @"userKey";
     if (self) {
         self.dictionary = dictionary;
         self.name = dictionary[@"name"];
-        self.screenName = dictionary[@"screen_name"];
-        self.profileImageURL = [[NSURL alloc] initWithString:dictionary[@"profile_image_url"]];
+        self.screenName = [NSString stringWithFormat:@"@%@", dictionary[@"screen_name"]];
+        self.profileImageURL = [[NSURL alloc] initWithString:[dictionary[@"profile_image_url"] stringByReplacingOccurrencesOfString:@"_normal" withString:@"_bigger"]];
     }
     return self;
 }
