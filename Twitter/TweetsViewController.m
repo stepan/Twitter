@@ -35,6 +35,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(onLogout)];
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
+    self.tableview.separatorInset = UIEdgeInsetsZero;
     [self.tableview registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
     [self fetchTweets];
 }
@@ -44,7 +45,7 @@
         self.tweets = [Tweet tweetsWithObject:responseObject];
         [self.tableview reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Failed to fetch tweets");
+        NSLog(@"Failed to fetch tweets %@", error);
         [self.tableview reloadData];
     }];
 }
@@ -72,9 +73,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //TweetViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     return [TweetViewCell heightForTweet:self.tweets[indexPath.row]];
-    return 200;
 }
 
 @end
