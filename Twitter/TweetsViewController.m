@@ -12,6 +12,7 @@
 #import "TweetViewCell.h"
 #import "Tweet.h"
 #import "User.h"
+#import "CreateTweetViewController.h"
 
 @interface TweetsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -36,6 +37,7 @@
     [super viewDidLoad];
     self.title = @"Tweets";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(onLogout)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStyleDone target:self action:@selector(onNewTweet)];
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -68,6 +70,13 @@
 
 - (void)onLogout{
     [[AppManager twitterClient] logout];
+}
+
+- (void)onNewTweet{
+    NSLog(@"new");
+    CreateTweetViewController *controller = [[CreateTweetViewController alloc] init];
+    UINavigationController *unc = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:unc animated:YES completion:nil];
 }
 
 # pragma mark - tableview methods

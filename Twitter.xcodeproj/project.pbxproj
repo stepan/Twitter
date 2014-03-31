@@ -31,6 +31,8 @@
 		FDED6B7818E54BFD009B1DCB /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = FDED6B7718E54BFD009B1DCB /* Tweet.m */; };
 		FDED6B7B18E54C11009B1DCB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FDED6B7A18E54C11009B1DCB /* User.m */; };
 		FDED6B7F18E5DBA4009B1DCB /* NSURL+dictionaryFromQueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = FDED6B7E18E5DBA4009B1DCB /* NSURL+dictionaryFromQueryString.m */; };
+		FDED6B8318E92772009B1DCB /* CreateTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDED6B8118E92772009B1DCB /* CreateTweetViewController.m */; };
+		FDED6B8418E92772009B1DCB /* CreateTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDED6B8218E92772009B1DCB /* CreateTweetViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,9 @@
 		FDED6B7A18E54C11009B1DCB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		FDED6B7D18E5DB4F009B1DCB /* NSURL+dictionaryFromQueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+dictionaryFromQueryString.h"; sourceTree = "<group>"; };
 		FDED6B7E18E5DBA4009B1DCB /* NSURL+dictionaryFromQueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+dictionaryFromQueryString.m"; sourceTree = "<group>"; };
+		FDED6B8018E92772009B1DCB /* CreateTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTweetViewController.h; sourceTree = "<group>"; };
+		FDED6B8118E92772009B1DCB /* CreateTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTweetViewController.m; sourceTree = "<group>"; };
+		FDED6B8218E92772009B1DCB /* CreateTweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTweetViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +194,9 @@
 				FDED6B6A18E54BA4009B1DCB /* TweetViewController.h */,
 				FDED6B6B18E54BA4009B1DCB /* TweetViewController.m */,
 				FDED6B6C18E54BA4009B1DCB /* TweetViewController.xib */,
+				FDED6B8018E92772009B1DCB /* CreateTweetViewController.h */,
+				FDED6B8118E92772009B1DCB /* CreateTweetViewController.m */,
+				FDED6B8218E92772009B1DCB /* CreateTweetViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -301,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDED6B8418E92772009B1DCB /* CreateTweetViewController.xib in Resources */,
 				FDED6B6918E54B92009B1DCB /* TweetsViewController.xib in Resources */,
 				FDED6B3718E4E4A4009B1DCB /* InfoPlist.strings in Resources */,
 				FDED6B7418E54BD7009B1DCB /* TweetViewCell.xib in Resources */,
@@ -363,6 +372,7 @@
 				FDED6B7B18E54C11009B1DCB /* User.m in Sources */,
 				FDED6B6818E54B92009B1DCB /* TweetsViewController.m in Sources */,
 				FDED6B7818E54BFD009B1DCB /* Tweet.m in Sources */,
+				FDED6B8318E92772009B1DCB /* CreateTweetViewController.m in Sources */,
 				FDED6B3D18E4E4A4009B1DCB /* AppDelegate.m in Sources */,
 				FDED6B5E18E4E73C009B1DCB /* TwitterClient.m in Sources */,
 				FD5750AC18E7B9E50039237B /* AppManager.m in Sources */,
