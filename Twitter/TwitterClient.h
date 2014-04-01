@@ -11,6 +11,7 @@
 
 extern NSString * const TwitterClientLoggedInNotification;
 extern NSString * const TwitterClientLoggedOutNotification;
+extern NSString * const TwitterClientAddedTweetNotification;
 
 @interface TwitterClient : BDBOAuth1RequestOperationManager
 + (TwitterClient *)clientWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret;

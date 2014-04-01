@@ -82,10 +82,14 @@ static NSDateFormatter *formatter = nil;
 }
 
 - (void)onRetweet:(UIButton *)button{
-    button.tintColor = [UIColor redColor];
-    [[AppManager twitterClient] retweetWithTweet:self.tweet success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    }];
+    if (!self.tweet.isRetweeted) {
+        self.tweet.isRetweeted = YES;
+        [self styleButton:button forState:YES];
+        [[AppManager twitterClient] retweetWithTweet:self.tweet success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        }];
+    }
+
 }
 
 - (void)onFavorite:(UIButton *)button{
@@ -101,10 +105,10 @@ static NSDateFormatter *formatter = nil;
 
 - (void)styleButton:(UIButton *)button forState:(BOOL)state{
     if (state) {
-        button.tintColor = [UIColor darkGrayColor];
+        button.tintColor = [UIColor greenColor];
     }
     else{
-        button.tintColor = nil;
+        button.tintColor = [UIColor darkGrayColor];
     }
 }
 @end

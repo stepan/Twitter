@@ -44,6 +44,12 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:TwitterClientLoggedInNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         [self fetchTweets];
     }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:TwitterClientAddedTweetNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        NSLog(@"%@", note);
+        [self.tweets insertObject:note.object atIndex:0];
+        [self.tableview scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+        [self.tableview reloadData];
+    }];
     
     self.title = @"Tweets";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(onLogout)];

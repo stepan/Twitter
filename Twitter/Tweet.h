@@ -22,5 +22,6 @@
 
 + (NSMutableArray *)tweetsWithObject:(id)object;
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (id)initWithText:(NSString *)text;
 
 @end

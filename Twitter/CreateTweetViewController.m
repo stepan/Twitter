@@ -69,7 +69,11 @@
 
 - (void)onTweetCreate{
     NSUInteger count = [self.tweetTextView.text length];
+
+    
     if (count > 0 && count <= 140 && !self.isInitialText) {
+        Tweet * tweet = [[Tweet alloc] initWithText:self.tweetTextView.text];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TwitterClientAddedTweetNotification object:tweet];
         [[AppManager twitterClient] tweetWithStatus:self.tweetTextView.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         }];

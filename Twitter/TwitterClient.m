@@ -9,6 +9,7 @@
 #import "TwitterClient.h"
 NSString * const TwitterClientLoggedInNotification = @"TwitterClientLoggedInNotification";
 NSString * const TwitterClientLoggedOutNotification = @"TwitterClientLoggedOutNotification";
+NSString * const TwitterClientAddedTweetNotification = @"TwitterClientAddedTweetNotification";
 
 @implementation TwitterClient
 
@@ -44,7 +45,9 @@ NSString * const TwitterClientLoggedOutNotification = @"TwitterClientLoggedOutNo
 }
 
 - (AFHTTPRequestOperation *)tweetWithStatus:(NSString *)status success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
-    return [self POST:@"1.1/statuses/update.json" parameters:@{@"status": status} success:success failure:failure];
+    return [self POST:@"1.1/statuses/update.json" parameters:@{@"status": status} success:^(AFHTTPRequestOperation *operation, id responseObject){
+        success(operation, responseObject);
+    } failure:failure];
 }
 
 - (AFHTTPRequestOperation *)toggleFavoriteWithTweet:(Tweet *)tweet success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{

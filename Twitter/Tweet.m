@@ -40,4 +40,18 @@ static NSDateFormatter *formatter = nil;
     return self;
 }
 
+- (id)initWithText:(NSString *)text{
+    self = [super init];
+    if (self) {
+        self.text = text;
+        self.user = [User currentUser];
+        self.createdAt = [NSDate date];
+        self.favoriteCount = 0;
+        self.isFavorited = NO;
+        self.isRetweeted = NO;
+    }
+    
+    return self;
+}
+
 @end
