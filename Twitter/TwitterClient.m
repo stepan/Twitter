@@ -7,6 +7,7 @@
 //
 
 #import "TwitterClient.h"
+NSString * const TwitterClientLoggedInNotification = @"TwitterClientLoggedInNotification";
 
 @implementation TwitterClient
 
@@ -44,5 +45,20 @@
 
 - (AFHTTPRequestOperation *)tweetWithStatus:(NSString *)status success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     return [self POST:@"1.1/statuses/update.json" parameters:@{@"status": status} success:success failure:failure];
+}
+
+- (AFHTTPRequestOperation *)toggleFavoriteWithTweet:(Tweet *)tweet success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    NSString *path;
+    if(tweet.isFavorited) {
+        path = @"1.1/favorites/create.json";
+    }else{
+        path = @"1.1/favorites/destroy.json";
+    }
+    return [self POST:path parameters:@{@"id": tweet.tweetID} success:success failure:failure];
+}
+
+- (AFHTTPRequestOperation *)retweetWithTweet:(Tweet *)tweet success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    NSString *path = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", tweet.tweetID];
+    return [self POST:path parameters:nil success:success failure:failure];
 }
 @end

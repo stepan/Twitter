@@ -14,13 +14,19 @@
 @interface CreateTweetViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *userScreenNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
-
+@property (nonatomic, assign) BOOL isInitialText;
+@property (nonatomic, strong) NSString *initialText;
 @end
 
 @implementation CreateTweetViewController
+
+- (id)initWithInitialText:(NSString *)text{
+    self = [super init];
+    self.initialText = text;
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +40,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.initialText == nil) {
+        self.isInitialText = YES;
+    }
+    else{
+        self.isInitialText = NO;
+    }
+    [self.tweetTextView becomeFirstResponder];
+    self.tweetTextView.delegate = self;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(onCancel)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Tweet" style:UIBarButtonItemStyleDone target:self action:@selector(onTweetCreate)];
     
@@ -54,12 +68,38 @@
 }
 
 - (void)onTweetCreate{
-    [[AppManager twitterClient] tweetWithStatus:self.tweetTextView.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"success");
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"failed to tweet");
-    }];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSUInteger count = [self.tweetTextView.text length];
+    if (count > 0 && count <= 140 && !self.isInitialText) {
+        [[AppManager twitterClient] tweetWithStatus:self.tweetTextView.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"success");
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"failed to tweet");
+        }];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+
 }
 
+#pragma mark - Text View methods
+
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if (self.isInitialText) {
+        textView.text = @"What's happening?";
+        textView.selectedRange = NSMakeRange(0, 0);
+    }
+    else{
+        textView.text = self.initialText;
+    }
+
+}
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    
+}
+
+- (void)textViewDidChange:(UITextView *)textView{
+    if (self.isInitialText) {
+        self.isInitialText = NO;
+        textView.text = [textView.text substringToIndex:1];
+    }
+}
 @end

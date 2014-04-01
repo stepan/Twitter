@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateTweetViewController : UIViewController
-
+@interface CreateTweetViewController : UIViewController <UITextViewDelegate>
+- (id)initWithInitialText:(NSString *)text;
 @end

@@ -26,6 +26,10 @@ static NSDateFormatter *formatter = nil;
         self.dictionary = dictionary;
         self.user = [[User alloc] initWithDictionary:dictionary[@"user"]];
         self.text = dictionary[@"text"];
+        self.tweetID = dictionary[@"id_str"];
+        self.favoriteCount = [dictionary[@"favorite_count"] integerValue];
+        self.isFavorited = [dictionary[@"favorited"] boolValue];
+        self.isRetweeted = [dictionary[@"retweeted"] boolValue];
         if (!formatter) {
             formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];

@@ -7,6 +7,7 @@
 //
 
 #import "AppManager.h"
+#import "AppDelegate.h"
 #import "TweetsViewController.h"
 #import "TweetViewController.h"
 #import "TweetViewCell.h"
@@ -53,6 +54,7 @@
 - (void)fetchTweets{
     [[AppManager twitterClient] homeTimeLineWithSuuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         self.tweets = [Tweet tweetsWithObject:responseObject];
+        NSLog(@"%@", responseObject);
         [self.tableview reloadData];
         [self.refreshControl endRefreshing];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -70,6 +72,7 @@
 
 - (void)onLogout{
     [[AppManager twitterClient] logout];
+    [(AppDelegate *)([UIApplication sharedApplication].delegate) setRootController];
 }
 
 - (void)onNewTweet{

@@ -13,21 +13,32 @@
 #import "NSURL+dictionaryFromQueryString.h"
 #import "User.h"
 
+@interface AppDelegate ()
+@property (nonatomic, strong) LoginViewController *lvc;
+@property (nonatomic, strong) TweetsViewController *tvc;
+@property (nonatomic, strong) UINavigationController *uvc;
+@end
+
 @implementation AppDelegate
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    LoginViewController *lvc = [[LoginViewController alloc] init];
-    TweetsViewController *tvc = [[TweetsViewController alloc] init];
-    UINavigationController *uvc = [[UINavigationController alloc] initWithRootViewController:tvc];
-    if ([AppManager twitterClient].authorized) {
-        self.window.rootViewController = uvc;
-    } else{
-        self.window.rootViewController = lvc;
-    }
+    self.lvc = [[LoginViewController alloc] init];
+    self.tvc = [[TweetsViewController alloc] init];
+    self.uvc = [[UINavigationController alloc] initWithRootViewController:self.tvc];
+    [self setRootController];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)setRootController{
+    if ([AppManager twitterClient].authorized) {
+        self.window.rootViewController = self.uvc;
+    } else{
+        self.window.rootViewController = self.lvc;
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -70,6 +81,7 @@
             if (parameters[@"oauth_token"] && parameters[@"oauth_verifier"]){
                 [[AppManager twitterClient] fetchAccessTokenWithPath:@"/oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
                     NSLog(@"success");
+                    [self setRootController];
                     [[AppManager twitterClient].requestSerializer saveAccessToken:accessToken];
                     [[AppManager twitterClient] userWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                         [User setCurrentUser:[[User alloc] initWithDictionary:responseObject]];
