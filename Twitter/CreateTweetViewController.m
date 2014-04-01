@@ -71,9 +71,7 @@
     NSUInteger count = [self.tweetTextView.text length];
     if (count > 0 && count <= 140 && !self.isInitialText) {
         [[AppManager twitterClient] tweetWithStatus:self.tweetTextView.text success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"success");
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"failed to tweet");
         }];
         [self dismissViewControllerAnimated:YES completion:nil];
     }

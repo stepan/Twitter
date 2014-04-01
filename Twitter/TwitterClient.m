@@ -23,11 +23,9 @@ NSString * const TwitterClientLoggedInNotification = @"TwitterClientLoggedInNoti
 - (void)login{
     [self.requestSerializer removeAccessToken];
     [self fetchRequestTokenWithPath:@"oauth/request_token" method:@"POST" callbackURL:[NSURL URLWithString: @"sgtwitter://oauth"] scope:nil success:^(BDBOAuthToken *requestToken) {
-        NSLog(@"Success: %@", [requestToken description]);
         NSURL *authURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token]];
         [[UIApplication sharedApplication] openURL:authURL];
     } failure:^(NSError *error) {
-        NSLog(@"failure");
     }];
 }
 

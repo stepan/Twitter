@@ -84,9 +84,7 @@ static NSDateFormatter *formatter = nil;
 - (void)onRetweet:(UIButton *)button{
     button.tintColor = [UIColor redColor];
     [[AppManager twitterClient] retweetWithTweet:self.tweet success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"success: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error retweeting %@", error);
     }];
 }
 
@@ -95,9 +93,7 @@ static NSDateFormatter *formatter = nil;
     [self styleButton:button forState:self.tweet.isFavorited];
 
     [[AppManager twitterClient] toggleFavoriteWithTweet:self.tweet success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
         self.tweet.isFavorited = !self.tweet.isFavorited;
         [self styleButton:button forState:self.tweet.isFavorited];
     }];

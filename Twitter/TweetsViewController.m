@@ -54,11 +54,9 @@
 - (void)fetchTweets{
     [[AppManager twitterClient] homeTimeLineWithSuuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         self.tweets = [Tweet tweetsWithObject:responseObject];
-        NSLog(@"%@", responseObject);
         [self.tableview reloadData];
         [self.refreshControl endRefreshing];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Failed to fetch tweets %@", error);
         [self.tableview reloadData];
         [self.refreshControl endRefreshing];
     }];
@@ -76,7 +74,6 @@
 }
 
 - (void)onNewTweet{
-    NSLog(@"new");
     CreateTweetViewController *controller = [[CreateTweetViewController alloc] init];
     UINavigationController *unc = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:unc animated:YES completion:nil];
