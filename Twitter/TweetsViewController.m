@@ -38,7 +38,12 @@
     [super viewDidLoad];
     self.title = @"Tweets";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(onLogout)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStyleDone target:self action:@selector(onNewTweet)];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor darkGrayColor];
+    UIButton *button1 = [[UIButton alloc] init];
+    button1.frame=CGRectMake(0,0,30,30);
+    [button1 setBackgroundImage:[UIImage imageNamed: @"compose.png"] forState:UIControlStateNormal];
+    [button1 addTarget:self action:@selector(onNewTweet) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button1];
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
