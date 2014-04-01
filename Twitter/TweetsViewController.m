@@ -36,6 +36,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:TwitterClientLoggedOutNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        self.tweets = [NSMutableArray array];
+        [User removeCurrentUser];
+    }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:TwitterClientLoggedInNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [self fetchTweets];
+    }];
+    
     self.title = @"Tweets";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(onLogout)];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor darkGrayColor];

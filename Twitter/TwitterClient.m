@@ -8,6 +8,7 @@
 
 #import "TwitterClient.h"
 NSString * const TwitterClientLoggedInNotification = @"TwitterClientLoggedInNotification";
+NSString * const TwitterClientLoggedOutNotification = @"TwitterClientLoggedOutNotification";
 
 @implementation TwitterClient
 
@@ -31,6 +32,7 @@ NSString * const TwitterClientLoggedInNotification = @"TwitterClientLoggedInNoti
 
 - (void)logout{
     [self deauthorize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TwitterClientLoggedOutNotification object:nil];
 }
 
 - (AFHTTPRequestOperation *)homeTimeLineWithSuuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{

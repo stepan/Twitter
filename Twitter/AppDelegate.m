@@ -30,6 +30,18 @@
     self.uvc = [[UINavigationController alloc] initWithRootViewController:self.tvc];
     [self setRootController];
     [self.window makeKeyAndVisible];
+    
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:TwitterClientLoggedInNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *notification)
+    {
+        [self setRootController];
+    }];
+    
+    
     return YES;
 }
 
@@ -80,8 +92,8 @@
             NSDictionary *parameters = [url dictionaryFromQueryString];
             if (parameters[@"oauth_token"] && parameters[@"oauth_verifier"]){
                 [[AppManager twitterClient] fetchAccessTokenWithPath:@"/oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
-                    [self setRootController];
                     [[AppManager twitterClient].requestSerializer saveAccessToken:accessToken];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TwitterClientLoggedInNotification object:nil];                    
                     [[AppManager twitterClient] userWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                         [User setCurrentUser:[[User alloc] initWithDictionary:responseObject]];
                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

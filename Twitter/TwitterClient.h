@@ -10,6 +10,7 @@
 #import "Tweet.h"
 
 extern NSString * const TwitterClientLoggedInNotification;
+extern NSString * const TwitterClientLoggedOutNotification;
 
 @interface TwitterClient : BDBOAuth1RequestOperationManager
 + (TwitterClient *)clientWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret;

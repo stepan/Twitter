@@ -55,7 +55,7 @@ NSString *const userKey = @"userKey";
     return self;
 }
 
-- (void)onLogout{
++ (void)removeCurrentUser{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:userKey];
     [defaults synchronize];
