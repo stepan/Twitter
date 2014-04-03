@@ -172,6 +172,10 @@
             <constraints>
                 <constraint firstItem="jfO-9a-q6m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3hN-3t-6EW"/>
                 <constraint firstAttribute="bottom" secondItem="jfO-9a-q6m" secondAttribute="bottom" id="5JL-gn-ERY"/>
+                <constraint firstAttribute="bottom" secondItem="jfO-9a-q6m" secondAttribute="bottom" id="6bm-4R-Ge8"/>
+                <constraint firstItem="jfO-9a-q6m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EEv-5g-VAx"/>
+                <constraint firstItem="jfO-9a-q6m" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="L4c-r0-w4g"/>
+                <constraint firstAttribute="trailing" secondItem="jfO-9a-q6m" secondAttribute="trailing" id="Sf0-aw-kBt"/>
                 <constraint firstItem="jfO-9a-q6m" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WFZ-0t-LEg"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

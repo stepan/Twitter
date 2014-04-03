@@ -59,17 +59,19 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="BhP-BL-Jkj" firstAttribute="top" secondItem="viS-wV-q0Y" secondAttribute="top" constant="10" id="5Kg-n2-xbl"/>
-                        <constraint firstAttribute="width" constant="320" id="T9U-bB-yy5"/>
                         <constraint firstItem="Sb5-fo-fk0" firstAttribute="leading" secondItem="viS-wV-q0Y" secondAttribute="leading" constant="10" id="eqt-Ol-EMl"/>
                         <constraint firstItem="Sb5-fo-fk0" firstAttribute="top" secondItem="BhP-BL-Jkj" secondAttribute="bottom" constant="13" id="jaw-Fs-68O"/>
-                        <constraint firstAttribute="height" constant="568" id="lal-I8-4lO"/>
                         <constraint firstItem="BhP-BL-Jkj" firstAttribute="leading" secondItem="viS-wV-q0Y" secondAttribute="leading" constant="10" id="mqZ-nR-MqO"/>
                     </constraints>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="viS-wV-q0Y" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="LuS-ie-zCo"/>
+                <constraint firstAttribute="bottom" secondItem="viS-wV-q0Y" secondAttribute="bottom" id="Tm1-R2-yjp"/>
                 <constraint firstItem="viS-wV-q0Y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VUs-gt-Lam"/>
+                <constraint firstItem="viS-wV-q0Y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XKh-4r-qpf"/>
+                <constraint firstAttribute="trailing" secondItem="viS-wV-q0Y" secondAttribute="trailing" id="XRf-Ha-OZK"/>
                 <constraint firstItem="viS-wV-q0Y" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Yj4-Ri-2xC"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
