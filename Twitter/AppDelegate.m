@@ -10,13 +10,14 @@
 #import "AppManager.h"
 #import "LoginViewController.h"
 #import "TweetsViewController.h"
+#import "ContainerViewController.h"
+#import "MenuViewController.h"
 #import "NSURL+dictionaryFromQueryString.h"
 #import "User.h"
 
 @interface AppDelegate ()
-@property (nonatomic, strong) LoginViewController *lvc;
-@property (nonatomic, strong) TweetsViewController *tvc;
-@property (nonatomic, strong) UINavigationController *uvc;
+@property (nonatomic, strong) LoginViewController *loginViewController;
+@property (nonatomic, strong) ContainerViewController *containerViewController;
 @end
 
 @implementation AppDelegate
@@ -25,9 +26,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.lvc = [[LoginViewController alloc] init];
-    self.tvc = [[TweetsViewController alloc] init];
-    self.uvc = [[UINavigationController alloc] initWithRootViewController:self.tvc];
+    self.loginViewController = [[LoginViewController alloc] init];
+    TweetsViewController *tvc = [[TweetsViewController alloc] init];
+    UINavigationController *uvc = [[UINavigationController alloc] initWithRootViewController:tvc];
+    MenuViewController *menuViewController = [[MenuViewController alloc] init];
+    self.containerViewController = [[ContainerViewController alloc] initWithLeftViewController:menuViewController rightViewController:uvc];
+    
     [self setRootController];
     [self.window makeKeyAndVisible];
     
@@ -47,9 +51,9 @@
 
 - (void)setRootController{
     if ([AppManager twitterClient].authorized) {
-        self.window.rootViewController = self.uvc;
+        self.window.rootViewController = self.containerViewController;
     } else{
-        self.window.rootViewController = self.lvc;
+        self.window.rootViewController = self.loginViewController;
     }
 }
 
