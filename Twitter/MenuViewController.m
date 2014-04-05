@@ -7,8 +7,13 @@
 //
 
 #import "MenuViewController.h"
+#import "User.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MenuViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userScreenNameLabel;
 
 @end
 
@@ -26,16 +31,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    NSLog(@"menu view did load");
+    self.title = @"Menu";
+    self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
+    User *user = [User currentUser];
+    self.userNameLabel.text = user.name;
+    self.userScreenNameLabel.text = user.screenName;
+    [self.profileImage setImageWithURL:[[NSURL alloc] initWithString:user.profileImageURL]];
+    NSLog(@"MenuViewController view did load");
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    NSLog(@"view will appear");
+    NSLog(@"MenuViewController view will appear");
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    NSLog(@"view did appear");
+    NSLog(@"MenuViewController view did appear");
 }
 
 - (void)didReceiveMemoryWarning

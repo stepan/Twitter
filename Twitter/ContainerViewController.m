@@ -8,6 +8,8 @@
 
 #import "ContainerViewController.h"
 
+static CGFloat endPosition = 270.0;
+
 @interface ContainerViewController ()
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
@@ -24,11 +26,11 @@
     return self;
 }
 
-- (id)initWithLeftViewController:(UIViewController *)leftViewController rightViewController:(UIViewController *)rightViewController{
+- (id)initWithRearViewController:(UIViewController *)rearViewController frontViewController:(UIViewController *)frontViewController{
     self  = [super init];
     if (self) {
-        self.leftViewController = leftViewController;
-        self.rightViewController = rightViewController;
+        self.rearViewController = rearViewController;
+        self.frontViewController = frontViewController;
     }
     
     return self;
@@ -37,10 +39,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.containerView addSubview:self.leftViewController.view];
-    [self.containerView addSubview:self.rightViewController.view];
+    [self switchController:self.frontViewController];
+    [self.containerView addSubview:self.rearViewController.view];
+    [self.containerView addSubview:self.frontViewController.view];
+    CGRect menuFrame = self.containerView.bounds;
+    menuFrame.size.width = endPosition;
+    self.rearViewController.view.frame = menuFrame;
+    self.frontViewController.view.frame = self.containerView.frame;
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
-    [self.rightViewController.view addGestureRecognizer:panGestureRecognizer];
+    [self.frontViewController.view addGestureRecognizer:panGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,7 +57,6 @@
 }
 
 - (void)onPan:(UIPanGestureRecognizer *)panGestureRecognizer{
-    CGFloat endPosition = 280;
     CGPoint velocity = [panGestureRecognizer velocityInView:self.containerView];
     CGRect frame = panGestureRecognizer.view.frame;
     if (panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
@@ -80,28 +86,36 @@
                 frame.origin.x = 0;
             }
         }
-        if (frame.origin.x == 0 && self.selectedViewController == self.leftViewController) {
-            self.selectedViewController = self.rightViewController;
-            [self willMoveToParentViewController:self.leftViewController];
-            [self.rightViewController removeFromParentViewController];
-            [self addChildViewController:self.rightViewController];
-            [self willMoveToParentViewController:self.rightViewController];
-        } else if (frame.origin.x == endPosition && self.selectedViewController == self.rightViewController) {
-            self.selectedViewController = self.leftViewController;
-            [self willMoveToParentViewController:self.rightViewController];
-            [self.leftViewController removeFromParentViewController];
-            [self addChildViewController:self.leftViewController];
-            [self willMoveToParentViewController:self.leftViewController];
-            
+        if (frame.origin.x == 0 && self.selectedViewController == self.rearViewController) {
+            NSLog(@"left");
+            [self switchController:self.frontViewController];
+        } else if (frame.origin.x == endPosition && self.selectedViewController == self.frontViewController) {
+            NSLog(@"right");
+            [self switchController:self.rearViewController];
         }
     }
     panGestureRecognizer.view.frame = frame;
     return;
     UIView *view = panGestureRecognizer.view;
-    [self addChildViewController:self.leftViewController];
+    [self addChildViewController:self.rearViewController];
     NSLog(@"%@", view);
     frame.origin.x += 2;
     view.frame = frame;
     
+}
+
+- (void)switchController:(UIViewController *)controller{
+    if (self.selectedViewController == controller) {
+        return;
+    }
+    UIViewController *oldController = self.selectedViewController;
+    self.selectedViewController = controller;
+    
+    [oldController willMoveToParentViewController:nil];
+    [oldController removeFromParentViewController];
+    
+    [self addChildViewController:controller];
+    [controller didMoveToParentViewController:self];
+    NSLog(@"%@", self.childViewControllers);
 }
 @end

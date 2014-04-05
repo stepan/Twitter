@@ -36,7 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSLog(@"TweetsViewController viewDidLoad");
     [[NSNotificationCenter defaultCenter] addObserverForName:TwitterClientLoggedOutNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         self.tweets = [NSMutableArray array];
         [User removeCurrentUser];
@@ -69,6 +69,22 @@
     [self.tableview registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
     [self fetchTweets];
     [User currentUser];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    NSLog(@"TweetsViewController viewDidAppear");
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    NSLog(@"TweetsViewController viewWillAppear");
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    NSLog(@"TweetsViewController viewDidDisappear");
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    NSLog(@"TweetsViewController viewWillDisappear");
 }
 
 - (void)fetchTweets{

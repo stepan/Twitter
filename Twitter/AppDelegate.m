@@ -29,8 +29,8 @@
     self.loginViewController = [[LoginViewController alloc] init];
     TweetsViewController *tvc = [[TweetsViewController alloc] init];
     UINavigationController *uvc = [[UINavigationController alloc] initWithRootViewController:tvc];
-    MenuViewController *menuViewController = [[MenuViewController alloc] init];
-    self.containerViewController = [[ContainerViewController alloc] initWithLeftViewController:menuViewController rightViewController:uvc];
+    UINavigationController *menuViewController = [[UINavigationController alloc] initWithRootViewController:[[MenuViewController alloc] init]];
+    self.containerViewController = [[ContainerViewController alloc] initWithRearViewController:menuViewController frontViewController:uvc];
     
     [self setRootController];
     [self.window makeKeyAndVisible];
@@ -99,6 +99,7 @@
                     [[AppManager twitterClient].requestSerializer saveAccessToken:accessToken];
                     [[NSNotificationCenter defaultCenter] postNotificationName:TwitterClientLoggedInNotification object:nil];                    
                     [[AppManager twitterClient] userWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        NSLog(@"%@", responseObject);
                         [User setCurrentUser:[[User alloc] initWithDictionary:responseObject]];
                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     }];

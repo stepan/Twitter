@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ContainerViewController : UIViewController
-- (id)initWithLeftViewController:(UIViewController *)leftViewController rightViewController:(UIViewController *)rightViewController;
+- (id)initWithRearViewController:(UIViewController *)rearViewController frontViewController:(UIViewController *)frontViewController;
 
-@property(nonatomic, strong) UIViewController *leftViewController;
-@property(nonatomic, strong) UIViewController *rightViewController;
+@property(nonatomic, strong) UIViewController *rearViewController;
+@property(nonatomic, strong) UIViewController *frontViewController;
 @property(nonatomic, strong) UIViewController *selectedViewController;
 @end
