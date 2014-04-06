@@ -16,6 +16,8 @@
 		FD788C4818EE571900B1B835 /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD788C4618EE571900B1B835 /* ContainerViewController.xib */; };
 		FD788C4C18EE5DB000B1B835 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD788C4A18EE5DB000B1B835 /* MenuViewController.m */; };
 		FD788C4D18EE5DB000B1B835 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD788C4B18EE5DB000B1B835 /* MenuViewController.xib */; };
+		FD788C5118F06DAE00B1B835 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD788C4F18F06DAE00B1B835 /* ProfileViewController.m */; };
+		FD788C5218F06DAE00B1B835 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD788C5018F06DAE00B1B835 /* ProfileViewController.xib */; };
 		FDED6B2D18E4E4A4009B1DCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDED6B2C18E4E4A4009B1DCB /* Foundation.framework */; };
 		FDED6B2F18E4E4A4009B1DCB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDED6B2E18E4E4A4009B1DCB /* CoreGraphics.framework */; };
 		FDED6B3118E4E4A4009B1DCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDED6B3018E4E4A4009B1DCB /* UIKit.framework */; };
@@ -54,6 +56,9 @@
 		FD788C4918EE5DB000B1B835 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		FD788C4A18EE5DB000B1B835 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		FD788C4B18EE5DB000B1B835 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		FD788C4E18F06DAE00B1B835 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		FD788C4F18F06DAE00B1B835 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		FD788C5018F06DAE00B1B835 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		FDED6B2918E4E4A4009B1DCB /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDED6B2C18E4E4A4009B1DCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FDED6B2E18E4E4A4009B1DCB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -197,6 +202,9 @@
 				FD788C4918EE5DB000B1B835 /* MenuViewController.h */,
 				FD788C4A18EE5DB000B1B835 /* MenuViewController.m */,
 				FD788C4B18EE5DB000B1B835 /* MenuViewController.xib */,
+				FD788C4E18F06DAE00B1B835 /* ProfileViewController.h */,
+				FD788C4F18F06DAE00B1B835 /* ProfileViewController.m */,
+				FD788C5018F06DAE00B1B835 /* ProfileViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -296,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD788C5218F06DAE00B1B835 /* ProfileViewController.xib in Resources */,
 				FD788C0118EA8D4A00B1B835 /* compose.png in Resources */,
 				FDED6B8418E92772009B1DCB /* CreateTweetViewController.xib in Resources */,
 				FD788C4D18EE5DB000B1B835 /* MenuViewController.xib in Resources */,
@@ -356,6 +365,7 @@
 				FDED6B6218E4E7A6009B1DCB /* LoginViewController.m in Sources */,
 				FDED6B7F18E5DBA4009B1DCB /* NSURL+dictionaryFromQueryString.m in Sources */,
 				FDED6B7B18E54C11009B1DCB /* User.m in Sources */,
+				FD788C5118F06DAE00B1B835 /* ProfileViewController.m in Sources */,
 				FDED6B6818E54B92009B1DCB /* TweetsViewController.m in Sources */,
 				FDED6B7818E54BFD009B1DCB /* Tweet.m in Sources */,
 				FDED6B8318E92772009B1DCB /* CreateTweetViewController.m in Sources */,

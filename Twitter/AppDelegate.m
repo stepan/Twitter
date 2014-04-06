@@ -96,8 +96,7 @@
             NSDictionary *parameters = [url dictionaryFromQueryString];
             if (parameters[@"oauth_token"] && parameters[@"oauth_verifier"]){
                 [[AppManager twitterClient] fetchAccessTokenWithPath:@"/oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
-                    [[AppManager twitterClient].requestSerializer saveAccessToken:accessToken];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:TwitterClientLoggedInNotification object:nil];                    
+                    [[AppManager twitterClient].requestSerializer saveAccessToken:accessToken];                    
                     [[AppManager twitterClient] userWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                         NSLog(@"%@", responseObject);
                         [User setCurrentUser:[[User alloc] initWithDictionary:responseObject]];

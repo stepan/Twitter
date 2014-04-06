@@ -7,6 +7,7 @@
 //
 
 #import "User.h"
+#import "TwitterClient.h"
 
 @interface User()
 
@@ -28,9 +29,10 @@ NSString *const userKey = @"userKey";
 }
 + (void)setCurrentUser:(User *)user{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *dictionary = @{@"name": user.name, @"screenName": user.screenName, @"profileImageURL": user.profileImageURL};
+    NSDictionary *dictionary = @{@"name": user.name, @"screenName": user.screenName, @"profileImageURL": user.profileImageURL, @"backgroundImageURL": user.backgroundImageURL};
     [defaults setObject:dictionary forKey:userKey];
     [defaults synchronize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TwitterClientLoggedInNotification object:nil];    
 }
 
 - (id)initWithNSDefaultsDictionary:(NSDictionary *)dictionary{
@@ -39,6 +41,7 @@ NSString *const userKey = @"userKey";
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screenName"];
         self.profileImageURL = dictionary[@"profileImageURL"];
+        self.backgroundImageURL = dictionary[@"backgroundImageURL"];
     }
     return self;
 }
@@ -50,6 +53,7 @@ NSString *const userKey = @"userKey";
         self.name = dictionary[@"name"];
         self.screenName = [NSString stringWithFormat:@"@%@", dictionary[@"screen_name"]];
         self.profileImageURL = [dictionary[@"profile_image_url"] stringByReplacingOccurrencesOfString:@"_normal" withString:@"_bigger"];
+        self.backgroundImageURL = dictionary[@"profile_background_image_url"];
 
     }
     return self;

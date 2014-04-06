@@ -12,7 +12,7 @@
 static TwitterClient *twitterClient;
 + (TwitterClient *)twitterClient{
     if (!twitterClient) {
-        twitterClient = [TwitterClient clientWithConsumerKey:@"kGGrh1DtGTwO9RrphlWN0Oceh" consumerSecret:@"auGeHhj5A7rB0VdI2tHrh0RpmZbsuwEioIKY80zaDmhUOnkzLt"];
+        twitterClient = [TwitterClient clientWithConsumerKey:@"6rBpLQQ1bTJAsSEGSdWk9wcm4" consumerSecret:@"2V4vOZY8Lv4jyJkZ7Z8br9EoKYtyne3cEl5ZPHjRVOyev6GGVp"];
     }
     return twitterClient;
 }

@@ -8,7 +8,7 @@
 
 #import "ContainerViewController.h"
 
-static CGFloat endPosition = 270.0;
+static CGFloat MAXMENUWIDTH = 270.0;
 
 @interface ContainerViewController ()
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -43,7 +43,7 @@ static CGFloat endPosition = 270.0;
     [self.containerView addSubview:self.rearViewController.view];
     [self.containerView addSubview:self.frontViewController.view];
     CGRect menuFrame = self.containerView.bounds;
-    menuFrame.size.width = endPosition;
+    menuFrame.size.width = MAXMENUWIDTH;
     self.rearViewController.view.frame = menuFrame;
     self.frontViewController.view.frame = self.containerView.frame;
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
@@ -67,41 +67,32 @@ static CGFloat endPosition = 270.0;
         if (newXPosition < 0) {
             newXPosition = 0;
         }
-        if (newXPosition > endPosition) {
-            newXPosition = endPosition;
+        if (newXPosition > MAXMENUWIDTH) {
+            newXPosition = MAXMENUWIDTH;
         }
         frame.origin.x = newXPosition;
         //NSLog(@"changed %2f", newXPosition);
     } else if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        if (frame.origin.x > 250) {
-            frame.origin.x = endPosition;
-        } else if (frame.origin.x < 100){
-            frame.origin.x = 0;
+        NSLog(@"velocity: %2f", velocity.x);
+        CGFloat endPosition;
+        if (frame.origin.x > 250 || (frame.origin.x > 135 && velocity.x > 0)) {
+            endPosition = MAXMENUWIDTH;
+        }else {
+            endPosition = 0;
         }
-        else {
-            if (velocity.x > 0) {
-                frame.origin.x = endPosition;
-            }
-            else{
-                frame.origin.x = 0;
-            }
-        }
+        frame.origin.x = endPosition;
+
         if (frame.origin.x == 0 && self.selectedViewController == self.rearViewController) {
-            NSLog(@"left");
             [self switchController:self.frontViewController];
-        } else if (frame.origin.x == endPosition && self.selectedViewController == self.frontViewController) {
-            NSLog(@"right");
+        } else if (frame.origin.x == MAXMENUWIDTH && self.selectedViewController == self.frontViewController) {
             [self switchController:self.rearViewController];
         }
     }
-    panGestureRecognizer.view.frame = frame;
-    return;
-    UIView *view = panGestureRecognizer.view;
-    [self addChildViewController:self.rearViewController];
-    NSLog(@"%@", view);
-    frame.origin.x += 2;
-    view.frame = frame;
-    
+    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveLinear animations:^{
+            panGestureRecognizer.view.frame = frame;
+    } completion:^(BOOL finished) {
+        
+    }];    
 }
 
 - (void)switchController:(UIViewController *)controller{

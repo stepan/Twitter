@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userScreenNameLabel;
+- (IBAction)onProfileButton:(UIButton *)button;
+- (IBAction)onHomeTimelineButton:(UIButton *)button;
+- (IBAction)onMentionsButton:(UIButton *)button;
 
 @end
 
@@ -54,4 +57,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)onProfileButton:(UIButton *)button {
+    
+}
+
+- (IBAction)onHomeTimelineButton:(UIButton *)button {
+}
+
+- (IBAction)onMentionsButton:(UIButton *)button {
+}
 @end

@@ -14,6 +14,7 @@
 #import "Tweet.h"
 #import "User.h"
 #import "CreateTweetViewController.h"
+#import "ProfileViewController.h"
 
 @interface TweetsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -68,7 +69,6 @@
     self.tableview.separatorInset = UIEdgeInsetsZero;
     [self.tableview registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
     [self fetchTweets];
-    [User currentUser];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -105,6 +105,9 @@
 }
 
 - (void)onLogout{
+    ProfileViewController *profileViewController = [[ProfileViewController alloc] initWithUser:[User currentUser]];
+    [self.navigationController pushViewController:profileViewController animated:YES];
+    return;
     [[AppManager twitterClient] logout];
     [(AppDelegate *)([UIApplication sharedApplication].delegate) setRootController];
 }
