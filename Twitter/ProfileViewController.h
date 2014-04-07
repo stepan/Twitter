@@ -10,7 +10,7 @@
 #import "MenuViewController.h"
 #import "User.h"
 
-@interface ProfileViewController : UIViewController
+@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) User *user;
 @property(nonatomic, strong) MenuViewController *menuViewController;
 - (id)initWithUser:(User *)user;
