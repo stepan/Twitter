@@ -10,7 +10,7 @@
 
 @protocol MenuViewControllerDelegate;
 
-@interface MenuViewController : UIViewController
+@interface MenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, assign) id <MenuViewControllerDelegate> delegate;
 @property(nonatomic, strong) UIViewController *selectedController;
 - (void)toggleMenuFromController:(UIViewController *)controller;
