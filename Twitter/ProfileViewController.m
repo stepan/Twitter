@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userScreenNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tweetsCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *followingCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *followersCountLabel;
 
 
 @end
@@ -45,6 +48,9 @@
     self.title = @"Profile";
     self.userNameLabel.text = self.user.name;
     self.userScreenNameLabel.text = self.user.screenName;
+    self.tweetsCountLabel.text = [NSString stringWithFormat:@"%ld", self.user.tweetsCount];
+    self.followingCountLabel.text = [NSString stringWithFormat:@"%ld", self.user.followingCount];
+    self.followersCountLabel.text = [NSString stringWithFormat:@"%ld", self.user.followersCount];
     [self.profileImage setImageWithURL:[[NSURL alloc] initWithString:self.user.profileImageURL]];
     [self.backgroundImage setImageWithURL:[[NSURL alloc] initWithString:self.user.backgroundImageURL]];
 

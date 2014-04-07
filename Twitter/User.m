@@ -29,7 +29,7 @@ NSString *const userKey = @"userKey";
 }
 + (void)setCurrentUser:(User *)user{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *dictionary = @{@"name": user.name, @"screenName": user.screenName, @"profileImageURL": user.profileImageURL, @"backgroundImageURL": user.backgroundImageURL};
+    NSDictionary *dictionary = @{@"name": user.name, @"screenName": user.screenName, @"profileImageURL": user.profileImageURL, @"backgroundImageURL": user.backgroundImageURL, @"tweetsCount": @(user.tweetsCount), @"followersCount": @(user.followersCount), @"followingCount": @(user.followingCount)};
     [defaults setObject:dictionary forKey:userKey];
     [defaults synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:TwitterClientLoggedInNotification object:nil];    
@@ -42,6 +42,9 @@ NSString *const userKey = @"userKey";
         self.screenName = dictionary[@"screenName"];
         self.profileImageURL = dictionary[@"profileImageURL"];
         self.backgroundImageURL = dictionary[@"backgroundImageURL"];
+        self.tweetsCount = [dictionary[@"tweetsCount"] integerValue];
+        self.followersCount = [dictionary[@"followersCount"] integerValue];
+        self.followingCount = [dictionary[@"followingCount"] integerValue];
     }
     return self;
 }
@@ -54,6 +57,9 @@ NSString *const userKey = @"userKey";
         self.screenName = [NSString stringWithFormat:@"@%@", dictionary[@"screen_name"]];
         self.profileImageURL = [dictionary[@"profile_image_url"] stringByReplacingOccurrencesOfString:@"_normal" withString:@"_bigger"];
         self.backgroundImageURL = dictionary[@"profile_background_image_url"];
+        self.tweetsCount = [dictionary[@"statuses_count"] integerValue];
+        self.followersCount = [dictionary[@"followers_count"] integerValue];
+        self.followingCount = [dictionary[@"friends_count"] integerValue];
 
     }
     return self;

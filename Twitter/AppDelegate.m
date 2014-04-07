@@ -27,9 +27,6 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.loginViewController = [[LoginViewController alloc] init];
-    MenuViewController *menuViewController = [[MenuViewController alloc] init];
-    self.containerViewController = [[ContainerViewController alloc] initWithMenuViewController:menuViewController];
-    
     [self setRootController];
     [self.window makeKeyAndVisible];
     
@@ -49,6 +46,10 @@
 
 - (void)setRootController{
     if ([AppManager twitterClient].authorized) {
+        if (!self.containerViewController) {
+            MenuViewController *menuViewController = [[MenuViewController alloc] init];
+            self.containerViewController = [[ContainerViewController alloc] initWithMenuViewController:menuViewController];
+        }
         self.window.rootViewController = self.containerViewController;
     } else{
         self.window.rootViewController = self.loginViewController;

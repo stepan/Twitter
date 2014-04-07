@@ -49,7 +49,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"TweetsViewController viewDidLoad");
     [[NSNotificationCenter defaultCenter] addObserverForName:TwitterClientLoggedOutNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         self.tweets = [NSMutableArray array];
         [User removeCurrentUser];
@@ -88,22 +87,6 @@
     [self fetchTweets];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    NSLog(@"TweetsViewController viewDidAppear");
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    NSLog(@"TweetsViewController viewWillAppear");
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    NSLog(@"TweetsViewController viewDidDisappear");
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    NSLog(@"TweetsViewController viewWillDisappear");
-}
-
 - (void)fetchTweets{
     [[AppManager twitterClient] timeLineWithTimelineOption:self.timelineOption success:^(AFHTTPRequestOperation *operation, id responseObject) {
         self.tweets = [Tweet tweetsWithObject:responseObject];
@@ -122,7 +105,6 @@
 }
 
 - (void)onMenuButton:(UIButton *)button{
-    NSLog(@"onmenubutton");
     [self.menuViewController toggleMenuFromController:self];
 }
 
