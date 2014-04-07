@@ -9,7 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
 
+@protocol TweetViewCellDelegate;
+
+
 @interface TweetViewCell : UITableViewCell
 @property (nonatomic, strong) Tweet *tweet;
 + (CGFloat)heightForTweet:(Tweet *)tweet;
+@property(nonatomic, assign) id <TweetViewCellDelegate> delegate;
+@end
+
+@protocol TweetViewCellDelegate <NSObject>
+- (void)tweetViewCell:(TweetViewCell *)tweetViewCell onProfileImageTapWithTweet:(Tweet *)tweet;
 @end

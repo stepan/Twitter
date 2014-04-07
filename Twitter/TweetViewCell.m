@@ -50,6 +50,8 @@ static TweetViewCell *prototypeCell = nil;
     self.tweetTextLabel.text = self.tweet.text;
     [self.profileImage setImageWithURL:[[NSURL alloc] initWithString:self.tweet.user.profileImageURL]];
     self.whenLabel.text = [MHPrettyDate prettyDateFromDate:self.tweet.createdAt withFormat:MHPrettyDateShortRelativeTime];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
+    [self.profileImage addGestureRecognizer:tapGestureRecognizer];
 }
 
 + (TweetViewCell *)prototypeCell
@@ -68,4 +70,7 @@ static TweetViewCell *prototypeCell = nil;
     return ceil(pvc.frame.size.height - pvc.tweetTextLabel.frame.size.height + r.size.height);
 }
 
+- (void)onTap:(UITapGestureRecognizer *)tapGestureRecognizer {
+    [self.delegate tweetViewCell:self onProfileImageTapWithTweet:self.tweet];
+}
 @end

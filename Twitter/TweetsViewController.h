@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "MenuViewController.h"
+#import "TweetViewCell.h"
 
 typedef NS_ENUM(NSUInteger, TweetsViewControllerTimelineOptions) {
     TweetsViewControllerTimelineHome,
     TweetsViewControllerTimelineMentions,
 };
 
-@interface TweetsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface TweetsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TweetViewCellDelegate>
 @property(nonatomic, strong) MenuViewController *menuViewController;
 @property(nonatomic, assign) TweetsViewControllerTimelineOptions timelineOption;
 - (id)initWithMenuViewController:(MenuViewController *)menuViewController timeline:(TweetsViewControllerTimelineOptions)timelineOption;

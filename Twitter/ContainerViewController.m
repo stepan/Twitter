@@ -115,20 +115,6 @@ static CGFloat MAXMENUWIDTH = 270.0;
    
 }
 
-- (void)switchController:(UIViewController *)controller{
-    if (self.selectedViewController == controller) {
-        return;
-    }
-    UIViewController *oldController = self.selectedViewController;
-    self.selectedViewController = controller;
-    
-    [oldController willMoveToParentViewController:nil];
-    [oldController removeFromParentViewController];
-    
-    [self addChildViewController:controller];
-    [controller didMoveToParentViewController:self];
-}
-
 #pragma mark - menu view controller methods
 
 - (void)menuViewController:(MenuViewController *)menuViewController didFinishChangingController:(UIViewController *)controller{
@@ -148,7 +134,7 @@ static CGFloat MAXMENUWIDTH = 270.0;
         frame.origin.x = MAXMENUWIDTH;
     }
     self.isMenuBeingShown ^= YES;
-    [UIView animateWithDuration:0.5 delay:0.1 usingSpringWithDamping:0.8 initialSpringVelocity:40 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:40 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.contentViewController.view.frame = frame;
     } completion:^(BOOL finished) {
         

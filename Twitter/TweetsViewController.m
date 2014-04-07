@@ -141,6 +141,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TweetViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetViewCell"];
     cell.tweet = self.tweets[indexPath.row];
+    cell.delegate = self;
     return cell;
 }
 
@@ -152,6 +153,13 @@
     TweetViewController *tweetViewController = [[TweetViewController alloc] initWithTweet:self.tweets[indexPath.row]];
     [self.navigationController pushViewController:tweetViewController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+# pragma mark - tweet view cell delegate methods
+
+- (void)tweetViewCell:(TweetViewCell *)tweetViewCell onProfileImageTapWithTweet:(Tweet *)tweet{
+    ProfileViewController *profileViewController = [[ProfileViewController alloc] initWithUser:tweet.user];
+    [self.navigationController pushViewController:profileViewController animated:YES];
 }
 
 @end
