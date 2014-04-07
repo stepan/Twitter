@@ -57,7 +57,7 @@
                     </constraints>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.17747893770103002" green="0.24385792435890369" blue="0.33860809948979587" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="vUJ-eL-355" firstAttribute="top" secondItem="irl-lu-xtH" secondAttribute="bottom" constant="8" id="4xk-no-sa3"/>
                 <constraint firstItem="Crr-wd-9eu" firstAttribute="leading" secondItem="8hK-3D-2oM" secondAttribute="trailing" constant="7" id="K6A-tF-jup"/>

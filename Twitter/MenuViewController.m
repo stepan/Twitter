@@ -38,7 +38,7 @@
         self.homeTimelineController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] initWithMenuViewController:self timeline:TweetsViewControllerTimelineHome]];
         self.mentionsController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] initWithMenuViewController:self timeline:TweetsViewControllerTimelineMentions]];
         self.selectedController = self.homeTimelineController;
-        self.links = @[@{@"title": @"Profile", @"controller":self.profileController}, @{@"title": @"Home Timeline", @"controller":self.homeTimelineController}, @{@"title": @"Mentions", @"controller":self.mentionsController}, @{@"title": @"Logout"}];
+        self.links = @[@{@"title": @"PROFILE", @"controller":self.profileController}, @{@"title": @"TIMELINE", @"controller":self.homeTimelineController}, @{@"title": @"MENTIONS", @"controller":self.mentionsController}, @{@"title": @"LOGOUT"}];
     }
     return self;
 }
