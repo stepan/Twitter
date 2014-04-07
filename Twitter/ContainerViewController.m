@@ -27,11 +27,11 @@ static CGFloat MAXMENUWIDTH = 270.0;
     return self;
 }
 
-- (id)initWithMenuViewController:(MenuViewController *)menuViewController contentViewController:(UIViewController *)contentViewController{
+- (id)initWithMenuViewController:(MenuViewController *)menuViewController{
     self  = [super init];
     if (self) {
         self.menuViewController = menuViewController;
-        self.contentViewController = contentViewController;
+        self.contentViewController = menuViewController.selectedController;
     }
     
     return self;

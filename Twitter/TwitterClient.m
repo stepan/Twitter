@@ -7,6 +7,7 @@
 //
 
 #import "TwitterClient.h"
+
 NSString * const TwitterClientLoggedInNotification = @"TwitterClientLoggedInNotification";
 NSString * const TwitterClientLoggedOutNotification = @"TwitterClientLoggedOutNotification";
 NSString * const TwitterClientAddedTweetNotification = @"TwitterClientAddedTweetNotification";
@@ -37,7 +38,19 @@ NSString * const TwitterClientAddedTweetNotification = @"TwitterClientAddedTweet
 }
 
 - (AFHTTPRequestOperation *)homeTimeLineWithSuuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
-    return [self GET:@"1.1/statuses/home_timeline.json" parameters:nil success:success failure:failure];
+    NSString *path = @"1.1/statuses/mentions_timeline.json";
+//    path = @"1.1/statuses/home_timeline.json";
+    return [self GET:path parameters:nil success:success failure:failure];
+}
+
+- (AFHTTPRequestOperation *)timeLineWithTimelineOption:(TweetsViewControllerTimelineOptions)timelineOption success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    NSString *path;
+    if (timelineOption == TweetsViewControllerTimelineHome) {
+        path = @"1.1/statuses/home_timeline.json";
+    }else{
+        path = @"1.1/statuses/mentions_timeline.json";
+    }
+    return [self GET:path parameters:nil success:success failure:failure];
 }
 
 - (AFHTTPRequestOperation *)userWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{

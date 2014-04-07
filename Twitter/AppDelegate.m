@@ -27,10 +27,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.loginViewController = [[LoginViewController alloc] init];
-    TweetsViewController *tvc = [[TweetsViewController alloc] init];
-    UINavigationController *uvc = [[UINavigationController alloc] initWithRootViewController:tvc];
     MenuViewController *menuViewController = [[MenuViewController alloc] init];
-    self.containerViewController = [[ContainerViewController alloc] initWithMenuViewController:menuViewController contentViewController:uvc];
+    self.containerViewController = [[ContainerViewController alloc] initWithMenuViewController:menuViewController];
     
     [self setRootController];
     [self.window makeKeyAndVisible];

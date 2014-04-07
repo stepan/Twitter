@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TweetsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+typedef NS_ENUM(NSUInteger, TweetsViewControllerTimelineOptions) {
+    TweetsViewControllerTimelineHome,
+    TweetsViewControllerTimelineMentions,
+};
 
+@interface TweetsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property(nonatomic, assign) TweetsViewControllerTimelineOptions timelineOption;
+- (id)initWithTimeline:(TweetsViewControllerTimelineOptions)timelineOption;
 @end

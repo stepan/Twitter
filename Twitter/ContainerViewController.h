@@ -10,7 +10,7 @@
 #import "MenuViewController.h"
 
 @interface ContainerViewController : UIViewController <MenuViewControllerDelegate>
-- (id)initWithMenuViewController:(MenuViewController *)menuViewController contentViewController:(UIViewController *)contentViewController;
+- (id)initWithMenuViewController:(MenuViewController *)menuViewController;
 
 @property(nonatomic, strong) MenuViewController *menuViewController;
 @property(nonatomic, strong) UIViewController *contentViewController;

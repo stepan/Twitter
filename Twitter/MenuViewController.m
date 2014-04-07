@@ -10,6 +10,7 @@
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
 #import "ProfileViewController.h"
+#import "TweetsViewController.h"
 
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
@@ -18,6 +19,10 @@
 - (IBAction)onProfileButton:(UIButton *)button;
 - (IBAction)onHomeTimelineButton:(UIButton *)button;
 - (IBAction)onMentionsButton:(UIButton *)button;
+@property(nonatomic, strong) UIViewController *profileController;
+@property(nonatomic, strong) UIViewController *homeTimelineController;
+@property(nonatomic, strong) UIViewController *mentionsController;
+@property(nonatomic, strong) User *currentUser;
 
 @end
 
@@ -27,7 +32,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.currentUser = [User currentUser];
+        self.profileController = [[UINavigationController alloc] initWithRootViewController:[[ProfileViewController alloc] initWithUser:self.currentUser]];
+        self.homeTimelineController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] initWithTimeline:TweetsViewControllerTimelineHome]];
+        self.mentionsController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] initWithTimeline:TweetsViewControllerTimelineMentions]];
+        self.selectedController = self.homeTimelineController;
     }
     return self;
 }
@@ -35,10 +44,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    User *user = [User currentUser];
-    self.userNameLabel.text = user.name;
-    self.userScreenNameLabel.text = user.screenName;
-    [self.profileImage setImageWithURL:[[NSURL alloc] initWithString:user.profileImageURL]];
+    self.userNameLabel.text = self.currentUser.name;
+    self.userScreenNameLabel.text = self.currentUser.screenName;
+    [self.profileImage setImageWithURL:[[NSURL alloc] initWithString:self.currentUser.profileImageURL]];
+    
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,13 +59,19 @@
 }
 
 - (IBAction)onProfileButton:(UIButton *)button {
-    [self.delegate menuViewController:self didFinishChangingController:[[ProfileViewController alloc] initWithUser:[User currentUser]]];
-    
+    [self changeController:self.profileController];
 }
 
 - (IBAction)onHomeTimelineButton:(UIButton *)button {
+    [self changeController:self.homeTimelineController];
 }
 
 - (IBAction)onMentionsButton:(UIButton *)button {
+    [self changeController:self.mentionsController];
 }
+
+- (void)changeController:(UIViewController *)controller{
+    [self.delegate menuViewController:self didFinishChangingController:controller];
+}
+
 @end

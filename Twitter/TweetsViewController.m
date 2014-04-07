@@ -16,6 +16,8 @@
 #import "CreateTweetViewController.h"
 #import "ProfileViewController.h"
 
+
+
 @interface TweetsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) NSMutableArray *tweets;
@@ -31,6 +33,15 @@
     if (self) {
         // Custom initialization
     }
+    return self;
+}
+
+- (id)initWithTimeline:(TweetsViewControllerTimelineOptions)timelineOption{
+    self = [super init];
+    if (self) {
+        self.timelineOption = timelineOption;
+    }
+    
     return self;
 }
 
@@ -87,7 +98,7 @@
 }
 
 - (void)fetchTweets{
-    [[AppManager twitterClient] homeTimeLineWithSuuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[AppManager twitterClient] timeLineWithTimelineOption:self.timelineOption success:^(AFHTTPRequestOperation *operation, id responseObject) {
         self.tweets = [Tweet tweetsWithObject:responseObject];
         [self.tableview reloadData];
         [self.refreshControl endRefreshing];

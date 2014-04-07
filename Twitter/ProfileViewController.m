@@ -42,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = self.user.name;
     self.userNameLabel.text = self.user.name;
     self.userScreenNameLabel.text = self.user.screenName;
     [self.profileImage setImageWithURL:[[NSURL alloc] initWithString:self.user.profileImageURL]];

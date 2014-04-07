@@ -12,6 +12,7 @@
 
 @interface MenuViewController : UIViewController
 @property(nonatomic, assign) id <MenuViewControllerDelegate> delegate;
+@property(nonatomic, strong) UIViewController *selectedController;
 @end
 
 @protocol MenuViewControllerDelegate <NSObject>
