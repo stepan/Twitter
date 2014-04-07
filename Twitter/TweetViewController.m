@@ -11,6 +11,7 @@
 #import "MHPrettyDate.h"
 #import "AppManager.h"
 #import "CreateTweetViewController.h"
+#import "ProfileViewController.h"
 
 @interface TweetViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
+- (IBAction)onTap:(UITapGestureRecognizer *)sender;
 
 
 @end
@@ -110,5 +112,9 @@ static NSDateFormatter *formatter = nil;
     else{
         button.tintColor = [UIColor darkGrayColor];
     }
+}
+- (IBAction)onTap:(UITapGestureRecognizer *)tapGestureRecognizer{
+    ProfileViewController *profileViewController = [[ProfileViewController alloc] initWithUser:self.tweet.user];
+    [self.navigationController pushViewController:profileViewController animated:YES];
 }
 @end

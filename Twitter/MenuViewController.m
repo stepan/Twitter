@@ -11,6 +11,8 @@
 #import "UIImageView+AFNetworking.h"
 #import "ProfileViewController.h"
 #import "TweetsViewController.h"
+#import "AppManager.h"
+#import "AppDelegate.h"
 
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
@@ -19,6 +21,7 @@
 - (IBAction)onProfileButton:(UIButton *)button;
 - (IBAction)onHomeTimelineButton:(UIButton *)button;
 - (IBAction)onMentionsButton:(UIButton *)button;
+- (IBAction)onLogout:(UIButton *)button;
 @property(nonatomic, strong) UIViewController *profileController;
 @property(nonatomic, strong) UIViewController *homeTimelineController;
 @property(nonatomic, strong) UIViewController *mentionsController;
@@ -34,8 +37,8 @@
     if (self) {
         self.currentUser = [User currentUser];
         self.profileController = [[UINavigationController alloc] initWithRootViewController:[[ProfileViewController alloc] initWithUser:self.currentUser]];
-        self.homeTimelineController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] initWithTimeline:TweetsViewControllerTimelineHome]];
-        self.mentionsController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] initWithTimeline:TweetsViewControllerTimelineMentions]];
+        self.homeTimelineController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] initWithMenuViewController:self timeline:TweetsViewControllerTimelineHome]];
+        self.mentionsController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] initWithMenuViewController:self timeline:TweetsViewControllerTimelineMentions]];
         self.selectedController = self.homeTimelineController;
     }
     return self;
@@ -70,8 +73,17 @@
     [self changeController:self.mentionsController];
 }
 
+- (IBAction)onLogout:(UIButton *)button{
+    [[AppManager twitterClient] logout];
+    [(AppDelegate *)([UIApplication sharedApplication].delegate) setRootController];
+}
+
 - (void)changeController:(UIViewController *)controller{
     [self.delegate menuViewController:self didFinishChangingController:controller];
+}
+
+- (void)toggleMenuFromController:(UIViewController *)controller{
+    [self.delegate menuViewController:self shouldToggleMenuControllerFromController:controller];
 }
 
 @end

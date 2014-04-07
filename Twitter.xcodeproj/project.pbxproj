@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B0645330EA044C90A9D585FB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E739566F224A4241A63FE517 /* libPods.a */; };
+		FD44E88618F25DA500ED935E /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = FD44E88518F25DA500ED935E /* menu.png */; };
 		FD5750AC18E7B9E50039237B /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5750AB18E7B9E50039237B /* AppManager.m */; };
 		FD788C0118EA8D4A00B1B835 /* compose.png in Resources */ = {isa = PBXBuildFile; fileRef = FD788BFE18EA8D4A00B1B835 /* compose.png */; };
 		FD788C0218EA8D4A00B1B835 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = FD788BFF18EA8D4A00B1B835 /* reply.png */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		92C83DBB914F48E994846B52 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		E739566F224A4241A63FE517 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD44E88518F25DA500ED935E /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = ../../Downloads/icon_21805/menu.png; sourceTree = "<group>"; };
 		FD5750AA18E7B9E50039237B /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		FD5750AB18E7B9E50039237B /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
 		FD788BFE18EA8D4A00B1B835 /* compose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compose.png; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		FDED6B8718EA21E3009B1DCB /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FD44E88518F25DA500ED935E /* menu.png */,
 				FD788BFE18EA8D4A00B1B835 /* compose.png */,
 				FD788BFF18EA8D4A00B1B835 /* reply.png */,
 				FD788C0018EA8D4A00B1B835 /* retweet.png */,
@@ -309,6 +312,7 @@
 				FDED6B8418E92772009B1DCB /* CreateTweetViewController.xib in Resources */,
 				FD788C4D18EE5DB000B1B835 /* MenuViewController.xib in Resources */,
 				FD788C4818EE571900B1B835 /* ContainerViewController.xib in Resources */,
+				FD44E88618F25DA500ED935E /* menu.png in Resources */,
 				FDED6B6918E54B92009B1DCB /* TweetsViewController.xib in Resources */,
 				FDED6B8618EA21D5009B1DCB /* favorite.png in Resources */,
 				FDED6B3718E4E4A4009B1DCB /* InfoPlist.strings in Resources */,

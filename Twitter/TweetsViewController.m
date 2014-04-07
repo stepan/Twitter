@@ -36,9 +36,10 @@
     return self;
 }
 
-- (id)initWithTimeline:(TweetsViewControllerTimelineOptions)timelineOption{
+- (id)initWithMenuViewController:(MenuViewController *)menuViewController timeline:(TweetsViewControllerTimelineOptions)timelineOption{
     self = [super init];
     if (self) {
+        self.menuViewController = menuViewController;
         self.timelineOption = timelineOption;
     }
     
@@ -63,13 +64,19 @@
     }];
     
     self.title = @"Tweets";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(onLogout)];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor darkGrayColor];
     UIButton *button1 = [[UIButton alloc] init];
     button1.frame=CGRectMake(0,0,30,30);
     [button1 setBackgroundImage:[UIImage imageNamed: @"compose.png"] forState:UIControlStateNormal];
     [button1 addTarget:self action:@selector(onNewTweet) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button1];
+    
+    UIButton *menu = [[UIButton alloc] init];
+    menu.frame=CGRectMake(0,0,30,30);
+    [menu setBackgroundImage:[UIImage imageNamed: @"menu.png"] forState:UIControlStateNormal];
+    [menu addTarget:self action:@selector(onMenuButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:menu];
+    
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -114,12 +121,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)onLogout{
-    ProfileViewController *profileViewController = [[ProfileViewController alloc] initWithUser:[User currentUser]];
-    [self.navigationController pushViewController:profileViewController animated:YES];
-    return;
-    [[AppManager twitterClient] logout];
-    [(AppDelegate *)([UIApplication sharedApplication].delegate) setRootController];
+- (void)onMenuButton:(UIButton *)button{
+    NSLog(@"onmenubutton");
+    [self.menuViewController toggleMenuFromController:self];
 }
 
 - (void)onNewTweet{

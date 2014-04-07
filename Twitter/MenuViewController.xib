@@ -73,6 +73,17 @@
                                 <action selector="onMentionsButton:" destination="-1" eventType="touchUpInside" id="wpb-y5-kAm"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHf-D4-oWe">
+                            <rect key="frame" x="10" y="255" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Logout">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onLogout:" destination="-1" eventType="touchUpInside" id="kvT-En-iwq"/>
+                                <action selector="onMentionsButton:" destination="-1" eventType="touchUpInside" id="mLh-gx-FGU"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="8hK-3D-2oM" firstAttribute="top" secondItem="eVP-8d-BWJ" secondAttribute="top" constant="20" id="Xt5-Jd-nE7"/>

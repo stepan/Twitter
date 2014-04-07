@@ -26,13 +26,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PXH-GV-U07">
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PXH-GV-U07">
                             <rect key="frame" x="10" y="10" width="48" height="48"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="0fL-Kn-BzA"/>
                                 <constraint firstAttribute="width" constant="48" id="aNw-RY-0Ls"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="JEB-4D-2qz" appends="YES" id="psw-Fe-jRv"/>
+                            </connections>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JH-eo-Ezx">
                             <rect key="frame" x="68" y="16" width="235" height="21"/>
@@ -181,5 +185,10 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <tapGestureRecognizer id="JEB-4D-2qz">
+            <connections>
+                <action selector="onTap:" destination="-1" id="qIf-AF-MRl"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

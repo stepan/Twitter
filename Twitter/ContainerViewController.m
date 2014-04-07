@@ -133,9 +133,23 @@ static CGFloat MAXMENUWIDTH = 270.0;
 
 - (void)menuViewController:(MenuViewController *)menuViewController didFinishChangingController:(UIViewController *)controller{
     self.contentViewController = controller;
+    self.isMenuBeingShown = NO;
     
     [UIView animateWithDuration:0.5 delay:0.1 usingSpringWithDamping:0.8 initialSpringVelocity:40 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.contentViewController.view.frame = self.containerView.frame;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)menuViewController:(MenuViewController *)menuViewController shouldToggleMenuControllerFromController:(UIViewController *)controller{
+    CGRect frame = self.containerView.bounds;
+    if (!self.isMenuBeingShown) {
+        frame.origin.x = MAXMENUWIDTH;
+    }
+    self.isMenuBeingShown ^= YES;
+    [UIView animateWithDuration:0.5 delay:0.1 usingSpringWithDamping:0.8 initialSpringVelocity:40 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.contentViewController.view.frame = frame;
     } completion:^(BOOL finished) {
         
     }];
