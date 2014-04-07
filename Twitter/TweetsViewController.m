@@ -46,7 +46,6 @@
         [self fetchTweets];
     }];
     [[NSNotificationCenter defaultCenter] addObserverForName:TwitterClientAddedTweetNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-        NSLog(@"%@", note);
         [self.tweets insertObject:note.object atIndex:0];
         [self.tableview scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
         [self.tableview reloadData];

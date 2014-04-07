@@ -9,6 +9,7 @@
 #import "MenuViewController.h"
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
+#import "ProfileViewController.h"
 
 @interface MenuViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
@@ -34,21 +35,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Menu";
-    self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
     User *user = [User currentUser];
     self.userNameLabel.text = user.name;
     self.userScreenNameLabel.text = user.screenName;
     [self.profileImage setImageWithURL:[[NSURL alloc] initWithString:user.profileImageURL]];
-    NSLog(@"MenuViewController view did load");
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    NSLog(@"MenuViewController view will appear");
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    NSLog(@"MenuViewController view did appear");
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,6 +48,7 @@
 }
 
 - (IBAction)onProfileButton:(UIButton *)button {
+    [self.delegate menuViewController:self didFinishChangingController:[[ProfileViewController alloc] initWithUser:[User currentUser]]];
     
 }
 

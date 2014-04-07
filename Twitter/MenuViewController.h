@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MenuViewControllerDelegate;
+
 @interface MenuViewController : UIViewController
+@property(nonatomic, assign) id <MenuViewControllerDelegate> delegate;
+@end
+
+@protocol MenuViewControllerDelegate <NSObject>
+
+- (void)menuViewController:(MenuViewController *)menuViewController didFinishChangingController:(UIViewController *)controller;
 
 @end

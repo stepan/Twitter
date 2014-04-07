@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuViewController.h"
 
-@interface ContainerViewController : UIViewController
-- (id)initWithRearViewController:(UIViewController *)rearViewController frontViewController:(UIViewController *)frontViewController;
+@interface ContainerViewController : UIViewController <MenuViewControllerDelegate>
+- (id)initWithMenuViewController:(MenuViewController *)menuViewController contentViewController:(UIViewController *)contentViewController;
 
-@property(nonatomic, strong) UIViewController *rearViewController;
-@property(nonatomic, strong) UIViewController *frontViewController;
+@property(nonatomic, strong) MenuViewController *menuViewController;
+@property(nonatomic, strong) UIViewController *contentViewController;
 @property(nonatomic, strong) UIViewController *selectedViewController;
 @end

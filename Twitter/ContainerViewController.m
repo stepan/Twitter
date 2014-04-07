@@ -12,6 +12,7 @@ static CGFloat MAXMENUWIDTH = 270.0;
 
 @interface ContainerViewController ()
 @property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (nonatomic, assign) BOOL isMenuBeingShown;
 
 @end
 
@@ -26,11 +27,11 @@ static CGFloat MAXMENUWIDTH = 270.0;
     return self;
 }
 
-- (id)initWithRearViewController:(UIViewController *)rearViewController frontViewController:(UIViewController *)frontViewController{
+- (id)initWithMenuViewController:(MenuViewController *)menuViewController contentViewController:(UIViewController *)contentViewController{
     self  = [super init];
     if (self) {
-        self.rearViewController = rearViewController;
-        self.frontViewController = frontViewController;
+        self.menuViewController = menuViewController;
+        self.contentViewController = contentViewController;
     }
     
     return self;
@@ -39,15 +40,35 @@ static CGFloat MAXMENUWIDTH = 270.0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self switchController:self.frontViewController];
-    [self.containerView addSubview:self.rearViewController.view];
-    [self.containerView addSubview:self.frontViewController.view];
+    [self.containerView addSubview:self.menuViewController.view];
     CGRect menuFrame = self.containerView.bounds;
     menuFrame.size.width = MAXMENUWIDTH;
-    self.rearViewController.view.frame = menuFrame;
-    self.frontViewController.view.frame = self.containerView.frame;
+    self.menuViewController.delegate = self;
+    self.menuViewController.view.frame = menuFrame;
+    self.contentViewController.view.frame = self.containerView.frame;
+    [self bindGestureRecognizer];
+}
+
+- (void)setContentViewController:(UIViewController *)contentViewController{
+    if (_contentViewController) {
+        [_contentViewController willMoveToParentViewController:nil];
+        [_contentViewController.view removeFromSuperview];
+        [_contentViewController removeFromParentViewController];
+    }
+    CGRect frame = self.containerView.frame;
+    frame.origin.x = MAXMENUWIDTH;
+    _contentViewController = contentViewController;
+    _contentViewController.view.frame = frame;
+    [self bindGestureRecognizer];
+    [self addChildViewController:_contentViewController];
+    [_contentViewController didMoveToParentViewController:self];
+}
+
+- (void)bindGestureRecognizer{
+   
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
-    [self.frontViewController.view addGestureRecognizer:panGestureRecognizer];
+    [self.contentViewController.view addGestureRecognizer:panGestureRecognizer];
+    [self.containerView addSubview:self.contentViewController.view];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,7 +81,6 @@ static CGFloat MAXMENUWIDTH = 270.0;
     CGPoint velocity = [panGestureRecognizer velocityInView:self.containerView];
     CGRect frame = panGestureRecognizer.view.frame;
     if (panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"started");
     } else if (panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
 
         CGFloat newXPosition = frame.origin.x + (velocity.x)/50;
@@ -71,9 +91,8 @@ static CGFloat MAXMENUWIDTH = 270.0;
             newXPosition = MAXMENUWIDTH;
         }
         frame.origin.x = newXPosition;
-        //NSLog(@"changed %2f", newXPosition);
+        panGestureRecognizer.view.frame = frame;
     } else if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"velocity: %2f", velocity.x);
         CGFloat endPosition;
         if (frame.origin.x > 250 || (frame.origin.x > 135 && velocity.x > 0)) {
             endPosition = MAXMENUWIDTH;
@@ -82,17 +101,18 @@ static CGFloat MAXMENUWIDTH = 270.0;
         }
         frame.origin.x = endPosition;
 
-        if (frame.origin.x == 0 && self.selectedViewController == self.rearViewController) {
-            [self switchController:self.frontViewController];
-        } else if (frame.origin.x == MAXMENUWIDTH && self.selectedViewController == self.frontViewController) {
-            [self switchController:self.rearViewController];
+        if (frame.origin.x == 0 && self.isMenuBeingShown) {
+            self.isMenuBeingShown = NO;
+        } else if (frame.origin.x == MAXMENUWIDTH && !self.isMenuBeingShown) {
+            self.isMenuBeingShown = YES;
         }
-    }
-    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveLinear animations:^{
+        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             panGestureRecognizer.view.frame = frame;
-    } completion:^(BOOL finished) {
-        
-    }];    
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+   
 }
 
 - (void)switchController:(UIViewController *)controller{
@@ -107,6 +127,18 @@ static CGFloat MAXMENUWIDTH = 270.0;
     
     [self addChildViewController:controller];
     [controller didMoveToParentViewController:self];
-    NSLog(@"%@", self.childViewControllers);
 }
+
+#pragma mark - menu view controller methods
+
+- (void)menuViewController:(MenuViewController *)menuViewController didFinishChangingController:(UIViewController *)controller{
+    self.contentViewController = controller;
+    
+    [UIView animateWithDuration:0.5 delay:0.1 usingSpringWithDamping:0.8 initialSpringVelocity:40 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.contentViewController.view.frame = self.containerView.frame;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
 @end
