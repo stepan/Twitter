@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuViewController.h"
 #import "User.h"
 
 @interface ProfileViewController : UIViewController
 @property (nonatomic, strong) User *user;
+@property(nonatomic, strong) MenuViewController *menuViewController;
 - (id)initWithUser:(User *)user;
+- (id)initWithUser:(User *)user menuViewController:(MenuViewController *)menuViewController;
 @end

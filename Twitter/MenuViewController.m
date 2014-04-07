@@ -36,7 +36,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.currentUser = [User currentUser];
-        self.profileController = [[UINavigationController alloc] initWithRootViewController:[[ProfileViewController alloc] initWithUser:self.currentUser]];
+        self.profileController = [[UINavigationController alloc] initWithRootViewController:[[ProfileViewController alloc] initWithUser:self.currentUser menuViewController:self]];
         self.homeTimelineController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] initWithMenuViewController:self timeline:TweetsViewControllerTimelineHome]];
         self.mentionsController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] initWithMenuViewController:self timeline:TweetsViewControllerTimelineMentions]];
         self.selectedController = self.homeTimelineController;
@@ -49,10 +49,7 @@
     [super viewDidLoad];
     self.userNameLabel.text = self.currentUser.name;
     self.userScreenNameLabel.text = self.currentUser.screenName;
-    [self.profileImage setImageWithURL:[[NSURL alloc] initWithString:self.currentUser.profileImageURL]];
-    
-
-    
+    [self.profileImage setImageWithURL:[[NSURL alloc] initWithString:self.currentUser.profileImageURL]];    
 }
 
 - (void)didReceiveMemoryWarning

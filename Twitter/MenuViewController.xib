@@ -33,19 +33,21 @@
                             <rect key="frame" x="65" y="25" width="235" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="screen name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irl-lu-xtH">
                             <rect key="frame" x="65" y="50" width="235" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MmD-uD-ZSX">
                             <rect key="frame" x="10" y="87" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.21538985833773144" green="0.0" blue="0.21837133290816324" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="AlNile" family="Al Nile" pointSize="19"/>
                             <state key="normal" title="Profile">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -56,6 +58,8 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgd-5u-WuR">
                             <rect key="frame" x="10" y="147" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.21538985829999999" green="0.0" blue="0.21837133289999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="AlNile" family="Al Nile" pointSize="19"/>
                             <state key="normal" title="Home Timeline">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -64,8 +68,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akd-iv-jZf">
-                            <rect key="frame" x="10" y="206" width="240" height="30"/>
+                            <rect key="frame" x="10" y="204" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.21538985829999999" green="0.0" blue="0.21837133289999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="AlNile" family="Al Nile" pointSize="19"/>
                             <state key="normal" title="Mentions">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -74,8 +80,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHf-D4-oWe">
-                            <rect key="frame" x="10" y="255" width="240" height="30"/>
+                            <rect key="frame" x="10" y="261" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.21538985829999999" green="0.0" blue="0.21837133289999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="AlNile" family="Al Nile" pointSize="19"/>
                             <state key="normal" title="Logout">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -85,12 +93,14 @@
                             </connections>
                         </button>
                     </subviews>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="8hK-3D-2oM" firstAttribute="top" secondItem="eVP-8d-BWJ" secondAttribute="top" constant="20" id="Xt5-Jd-nE7"/>
                         <constraint firstItem="8hK-3D-2oM" firstAttribute="leading" secondItem="eVP-8d-BWJ" secondAttribute="leading" constant="10" id="pn6-RL-l6n"/>
                     </constraints>
                 </scrollView>
             </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="eVP-8d-BWJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HNJ-wl-As9"/>
                 <constraint firstAttribute="trailing" secondItem="eVP-8d-BWJ" secondAttribute="trailing" id="MDh-Ho-4k3"/>

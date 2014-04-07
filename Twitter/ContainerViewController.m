@@ -121,7 +121,7 @@ static CGFloat MAXMENUWIDTH = 270.0;
     self.contentViewController = controller;
     self.isMenuBeingShown = NO;
     
-    [UIView animateWithDuration:0.5 delay:0.1 usingSpringWithDamping:0.8 initialSpringVelocity:40 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.5 delay:0.1 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.contentViewController.view.frame = self.containerView.frame;
     } completion:^(BOOL finished) {
         
@@ -134,7 +134,7 @@ static CGFloat MAXMENUWIDTH = 270.0;
         frame.origin.x = MAXMENUWIDTH;
     }
     self.isMenuBeingShown ^= YES;
-    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:40 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.contentViewController.view.frame = frame;
     } completion:^(BOOL finished) {
         

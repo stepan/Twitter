@@ -38,7 +38,15 @@
     if (self) {
         self.user = user;
     }
-    
+    return self;
+}
+
+- (id)initWithUser:(User *)user menuViewController:(MenuViewController *)menuViewController{
+    self = [super init];
+    if (self) {
+        self.user = user;
+        self.menuViewController = menuViewController;
+    }
     return self;
 }
 
@@ -46,6 +54,14 @@
 {
     [super viewDidLoad];
     self.title = @"Profile";
+    
+    if (self.menuViewController) {
+        UIButton *menu = [[UIButton alloc] init];
+        menu.frame=CGRectMake(0,0,30,30);
+        [menu setBackgroundImage:[UIImage imageNamed: @"menu.png"] forState:UIControlStateNormal];
+        [menu addTarget:self action:@selector(onMenuButton:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:menu];
+    }
     self.userNameLabel.text = self.user.name;
     self.userScreenNameLabel.text = self.user.screenName;
     self.tweetsCountLabel.text = [NSString stringWithFormat:@"%ld", self.user.tweetsCount];
@@ -54,6 +70,10 @@
     [self.profileImage setImageWithURL:[[NSURL alloc] initWithString:self.user.profileImageURL]];
     [self.backgroundImage setImageWithURL:[[NSURL alloc] initWithString:self.user.backgroundImageURL]];
 
+}
+
+- (void)onMenuButton:(UIButton *)button{
+    [self.menuViewController toggleMenuFromController:self];
 }
 
 - (void)didReceiveMemoryWarning
